@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 14:58:40 by knage             #+#    #+#             */
-/*   Updated: 2016/07/04 17:26:57 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/04 17:51:16 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	extract_data(int fd)
 	t_env env;
 
 	get_ant_numbers(fd, &env);
-	get_
+	get_data(fd, &env);
 }
 
 int main(int ac, char **av)
