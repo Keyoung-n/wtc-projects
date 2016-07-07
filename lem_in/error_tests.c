@@ -39,3 +39,28 @@ int	what_type(char *line)
     }
     return (0);
 }
+
+int is_valid_room(char *str)
+{
+    int i;
+    int spaces;
+
+    i = 0;
+    spaces = 0;
+    while (str[i] != ' ')
+        i++;
+    while (str[i])
+    {
+        if (str[i] == ' ')
+        {
+            spaces++;
+            i++;
+        }
+        if (!ft_isnbr(str[i]))
+            return (0);
+        i++;
+    }
+    if (spaces != 2)
+        return (0);
+    return (1);
+}

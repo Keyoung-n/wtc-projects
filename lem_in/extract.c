@@ -6,11 +6,25 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:11:16 by knage             #+#    #+#             */
-/*   Updated: 2016/07/06 16:28:27 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/07 16:54:34 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void    add_room(t_data *curr)
+{
+    t_data *head;
+    
+    if (curr == NULL)
+        head = NULL;
+    else
+        head = curr;
+    curr = (t_data *)malloc(sizeof(t_data));
+    curr->next  = head;
+    head = curr;
+    curr = head;
+}
 
 void	get_ant_numbers(t_env *env)
 {
@@ -30,7 +44,21 @@ void	get_ant_numbers(t_env *env)
 
 void	get_room(char *str, t_data *room)
 {
-	if (
+    int i;
+
+    i = 0;
+	if (is_valid_room(str))
+	{
+        add_room(room);
+        room->name = build_str(str, i, ' ');
+   //     room->x = ft_atoi(build_str(str, i, ' '));
+ //       room->y = ft_atoi(build_str(str, i, ' '));
+	}
+    else
+    {
+        ft_putstr("error: invalid room");
+        exit(0);
+    }
 }
 
 void	get_link(char *str, t_data *room)

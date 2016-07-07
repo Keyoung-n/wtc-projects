@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/19 14:28:07 by knage             #+#    #+#             */
-/*   Updated: 2016/06/19 14:28:11 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/07 07:26:35 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ int					ft_putwstr_pf(va_list ap, int nbb);
 void				ft_putwstr(wchar_t *ws);
 int                 get_next_line(const int fd, char **line);
 long                ft_atoil(const char *str);
+int					ft_isnbr(char c);
 #endif

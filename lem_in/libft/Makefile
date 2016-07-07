@@ -6,7 +6,7 @@
 #    By: knage <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/19 14:28:02 by knage             #+#    #+#              #
-#    Updated: 2016/06/19 14:28:04 by knage            ###   ########.fr        #
+#    Updated: 2016/07/07 07:27:18 by knage            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ SRC = ft_memset.c			\
 	  ft_strjoin.c			\
 	  ft_strsplit.c			\
 	  ft_strstr.c			\
-	  ft_abs.c			\
+	  ft_abs.c				\
 	  ft_putnbr_base.c 		\
 	  ft_put_pf.c   		\
 	  ft_put_pf2.c    		\
@@ -77,6 +77,7 @@ SRC = ft_memset.c			\
 	  ft_put_pf3.c			\
 	  get_next_line.c	 	\
 	  ft_atoil.c			\
+	  ft_isnbr.c			\
 
 SRCO = ft_memset.o			\
 	   ft_itoa.o			\
@@ -131,18 +132,19 @@ SRCO = ft_memset.o			\
 	   ft_strjoin.o			\
 	   ft_strsplit.o		\
 	   ft_strstr.o			\
-	   ft_abs.o             	\
-	   ft_putnbr_base.o     	\
-	   ft_put_pf.o          	\
-	   ft_put_pf2.o         	\
-	   ft_printf.o          	\
-	   ft_putwstr.o         	\
-	   ft_wcslen.o          	\
-	   ft_putwstr_pf.o      	\
-	   ft_printf_lib.o      	\
-	   ft_put_pf3.o         	\
+	   ft_abs.o             \
+	   ft_putnbr_base.o     \
+	   ft_put_pf.o          \
+	   ft_put_pf2.o         \
+	   ft_printf.o          \
+	   ft_putwstr.o         \
+	   ft_wcslen.o          \
+	   ft_putwstr_pf.o      \
+	   ft_printf_lib.o      \
+	   ft_put_pf3.o         \
 	   get_next_line.o	 	\
 	   ft_atoil.o		 	\
+	   ft_isnbr.o			\
 
 CFLAGS = -Wall -Wextra -Werror
 
