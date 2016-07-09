@@ -6,36 +6,46 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 14:58:40 by knage             #+#    #+#             */
-/*   Updated: 2016/07/06 16:11:52 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/09 15:55:15 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	extract_data(t_env *env, t_data *room)
-{// error 0 // link 1 // point 2 // comment 3 // special 4
+void	extract_data(t_env *env, t_data **room)
+{// error 0 // link 1 // point 2 // commnt 3 // special 4
 	char	*line;
 	int		type;
-	int		special;
+	t_data	*temp;
 
 	get_ant_numbers(env);
-	special = 0;
+	temp = *room;
 	while (get_next_line(0, &line))
 	{
 		type = what_type(line);
-		if (type == 1)
-			get_link(line, room);
+		if (type == 1) 
+			get_link(line, temp);
 		else if (type == 2)
-			get_room(line, room);
+			get_room(line, &temp, env);
 		else if (type == 3)
 			;
 		else if (type == 4)
-			special = check_special(line, special);
+			env->type = check_special(line, env);
 		else
 		{
-			ft_putstr("error\n");
+			ft_putstr("error: invalid line\n");
 			exit(0);
 		}
+	}
+	*room = temp;
+}
+
+void	print_list(t_data *curr)
+{
+	while (curr)
+	{
+		ft_printf("name = %s, x:y = %i:%i type = %i\n", curr->name, curr->x, curr->y, curr->type);
+		curr = curr->next;
 	}
 }
 
@@ -45,7 +55,8 @@ int main(void)
 	t_env	env;
 
 	rooms = NULL;
-	extract_data(&env, rooms);
+	extract_data(&env, &rooms);
+	print_list(rooms);
     //load_data();
 	//algo
 	//print

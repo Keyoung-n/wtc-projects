@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 15:03:00 by knage             #+#    #+#             */
-/*   Updated: 2016/07/07 09:28:53 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/09 15:50:09 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,26 @@
 typedef struct	s_env
 {
 	long	ant_count;
+	int		special[2];
+	int		type;
 	int		size;
 	
 }				t_env;
+
+typedef struct	s_links
+{
+	char 			*link;
+	struct s_links	*next;
+}				t_links;
 
 typedef struct	s_data
 {
 	char			*name;
 	int				x;
 	int				y;
+	int				type;
 	int				bar_code;
-	char			*links;
+	t_links			*links;
 	struct s_data	*next;
 }				t_data;
 
@@ -37,11 +46,13 @@ typedef struct	s_room
 	int		type;
 }				t_room;
 
-char			*build_str(char *str, int i, char limit);
+char			*build_str(char *str, int *i, char limit);
 void			get_ant_numbers(t_env *env);
+void			add_link(t_data **curr);
 void			get_link(char *str, t_data *room);
-void			get_room(char *str, t_data *room);
-int				check_special(char *line, int type);
-int				is_valid_room(char *str);
+void			get_room(char *str, t_data **room, t_env *env);
+int				is_valid_link(char *str, t_data *curr);
+int				check_special(char *line, t_env *env);
+int				is_valid_room(char *str, t_data *curr);
 int				what_type(char *line);
 #endif
