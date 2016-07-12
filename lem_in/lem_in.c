@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 14:58:40 by knage             #+#    #+#             */
-/*   Updated: 2016/07/09 15:55:15 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/12 07:30:16 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,21 @@ void	extract_data(t_env *env, t_data **room)
 	*room = temp;
 }
 
+void	print_links(t_links *curr)
+{
+	while (curr)
+	{
+		ft_printf("link = %s\n", curr->link);
+		curr = curr->next;
+	}
+}
+
 void	print_list(t_data *curr)
 {
 	while (curr)
 	{
 		ft_printf("name = %s, x:y = %i:%i type = %i\n", curr->name, curr->x, curr->y, curr->type);
+		print_links(curr->links);
 		curr = curr->next;
 	}
 }
@@ -59,6 +69,6 @@ int main(void)
 	print_list(rooms);
     //load_data();
 	//algo
-	//print
+	//march
 	return (0);
 }

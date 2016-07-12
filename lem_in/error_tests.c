@@ -82,7 +82,6 @@ int is_valid_link(char *str, t_data *curr)
 {
     while (curr)
     {
-        ft_printf("%s == %s\n", str, curr->name);
         if (ft_strcmp(str, curr->name) == 0)
             return (1);
         curr = curr->next;

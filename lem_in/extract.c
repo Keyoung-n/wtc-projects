@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:11:16 by knage             #+#    #+#             */
-/*   Updated: 2016/07/08 09:11:26 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/12 09:46:39 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,12 @@ void    add_room(t_data **curr)
 void	get_ant_numbers(t_env *env)
 {
     char	*line;
+	char	*buf;
     long	ant_numbers;
     
-    get_next_line(0, &line);
+	get_next_line(0, &line);
+	buf = NULL;
+	ft_putstr(buf);
     ant_numbers = ft_atoil(line);
     if (ant_numbers != 0)
         env->ant_count = ant_numbers;
@@ -77,17 +80,20 @@ void	get_room(char *str, t_data **room, t_env *env)
 void	get_link(char *str, t_data *room)
 {
     char *temp;
+    char *linkto;
     int i;
 
     i = 0;
     temp = build_str(str, &i, '-');
+    linkto = build_str(str, &i, '-');
   while (room && temp[0] != 'l')
   {
       if (ft_strcmp(room->name, temp) == 0)
       {
-          if (is_valid_link(build_str(str, &i, '-'), room))
+          if (is_valid_link(linkto, room))
           {
-    //        add_link();
+            add_link(&room);
+            room->links->link = linkto;
             temp[0] = 'l';
           }
       }
