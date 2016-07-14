@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/11 17:36:49 by knage             #+#    #+#             */
-/*   Updated: 2016/07/11 17:37:34 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/14 16:45:22 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,15 @@
 #include <termcap.h>
 #include <termios.h>
 
-typedef struct	s_choice
+typedef struct	s_list
 {
-	char		*choice;
-	s_choice	*next;
-}				t_choice;
+	char			*choice;
+	int				select;
+	int				hover;
+}				t_list;
+
+typedef struct	s_env
+{
+	struct termios termios;
+}				t_env;
 #endif
