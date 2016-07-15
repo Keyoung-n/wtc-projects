@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/11 17:36:49 by knage             #+#    #+#             */
-/*   Updated: 2016/07/15 10:36:46 by knage            ###   ########.fr       */
+/*   Created: 2016/07/15 12:41:46 by knage             #+#    #+#             */
+/*   Updated: 2016/07/15 14:55:26 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-#define FT_SELECT_H
-
-#include "libft/libft.h"
-#include <termcap.h>
-#include <termios.h>
-
-typedef struct	s_list
+void	close(t_env *env)
 {
-	char			*choice;
-    int             visible;
-	int				select;
-	int				hover;
-}				t_list;
+	tgetent(NULL, getenv("TERM"));
+	tcgetattr(0, &env->termios);
+	env->termios.c_lflag &= ~(ECHO | ICANON);
+	tcsetattr(0, TCSANOW, &env->termios);
+	env->term.c_lflag |= (ICANON | ECHO);
+	tputs(tgetstr("te", NULL), 1, ft_putchar_i);
+	tputs(tgetstr("ve", NULL), 1, ft_putchar_i);
+}
 
-typedef struct	s_env
+void	signals(t))
 {
-	struct termios	termios;
-	int				finish;
-	int				remove;
-	int				max;
-	int				place;
-}				t_env;
-#endif
+	signal(SIGTSTP, close);
+}
