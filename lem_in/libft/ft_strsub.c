@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/19 14:27:41 by knage             #+#    #+#             */
-/*   Updated: 2016/06/19 14:49:59 by knage            ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:54 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:06 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 
 	i = 0;
 	ptr = (char *)malloc(len + 1);
-	if (ptr == NULL || s == NULL)
+	if (ptr == 0 || s == 0)
 	{
-		return (NULL);
+		return (0);
 	}
 	while (i < len)
 	{

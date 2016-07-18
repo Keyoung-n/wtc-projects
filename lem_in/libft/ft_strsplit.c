@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/19 14:27:41 by knage             #+#    #+#             */
-/*   Updated: 2016/06/19 14:27:53 by knage            ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:54 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:06 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char			**ft_strsplit(char const *s, char c)
 	int		start;
 
 	if (!s || !(tab = (char **)malloc(sizeof(char *) * (ft_words(s, c) + 1))))
-		return (NULL);
+		return (0);
 	i = 0;
 	size = 0;
 	while (s[i])
@@ -58,6 +58,6 @@ char			**ft_strsplit(char const *s, char c)
 			tab[size++] = ft_strsub(s, start, i - start);
 		}
 	}
-	tab[size] = NULL;
+	tab[size] = 0;
 	return (tab);
 }

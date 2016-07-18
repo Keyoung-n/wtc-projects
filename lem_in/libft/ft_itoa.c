@@ -5,38 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/19 14:27:41 by knage             #+#    #+#             */
-/*   Updated: 2016/06/19 14:30:15 by knage            ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:52 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:04 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <string.h>
 
-char	*ft_itoa(int n)
+static size_t	digit_count(long n)
 {
-	char *p;
+	size_t i;
 
-	p = ft_strnew(20) + 19;
-	if (n >= 0 && p)
+	i = 1;
+	if (n < 0)
+		n = -n;
+	while (n >= 10)
 	{
-		*--p = '0' + (n % 10);
+		i++;
 		n /= 10;
-		while (n != 0)
-		{
-			*--p = '0' + (n % 10);
-			n /= 10;
-		}
 	}
-	else if (p)
+	return (i);
+}
+
+char			*ft_itoa(int n)
+{
+	long	v;
+	size_t	count;
+	char	*str;
+	char	neg;
+
+	v = n;
+	neg = (v < 0 ? 1 : 0);
+	count = digit_count(v);
+	str = ft_strnew(count + neg);
+	if (str == NULL)
+		return (NULL);
+	if (neg)
 	{
-		*--p = '0' - (n % 10);
-		n /= 10;
-		while (n != 0)
-		{
-			*--p = '0' - (n % 10);
-			n /= 10;
-		}
-		*--p = '-';
+		v = -v;
+		str[0] = '-';
 	}
-	return (p);
+	while (count > 0)
+	{
+		str[count + neg - 1] = (v % 10) + '0';
+		count--;
+		v /= 10;
+	}
+	return (str);
 }

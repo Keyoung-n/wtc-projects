@@ -5,19 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/19 14:27:41 by knage             #+#    #+#             */
-/*   Updated: 2016/06/19 14:31:34 by knage            ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:52 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:04 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*tmp;
+	size_t i;
 
-	tmp = (char*)malloc(sizeof(char) + len);
-	ft_memcpy(tmp, src, len);
-	ft_memcpy(dst, tmp, len);
+	if (dst == NULL || src == NULL || len == 0)
+		return (dst);
+	if (src < dst)
+	{
+		i = len;
+		while (i > 0)
+		{
+			i--;
+			((char *)dst)[i] = ((char *)src)[i];
+		}
+	}
+	else
+	{
+		i = 0;
+		while (i < len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
+		}
+	}
 	return (dst);
 }

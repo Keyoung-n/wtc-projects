@@ -5,18 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/19 14:27:41 by knage             #+#    #+#             */
-/*   Updated: 2016/06/19 14:27:53 by knage            ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:54 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:06 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+int		ft_tolower(int c)
 {
 	if (c >= 65 && c <= 90)
+	{
 		c = c + 32;
+		return (c);
+	}
 	else
-		return (0);
-	return (c);
+	{
+		return (c);
+	}
 }

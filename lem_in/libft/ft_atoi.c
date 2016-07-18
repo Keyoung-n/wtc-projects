@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/19 14:27:41 by knage             #+#    #+#             */
-/*   Updated: 2016/07/02 14:57:11 by knage            ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:52 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:04 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,27 @@
 int		ft_atoi(const char *str)
 {
 	int	i;
-	int	negativ;
-	int	number;
+	int	neg;
+	int	num;
 
 	i = 0;
-	negativ = 0;
-	number = 0;
+	neg = 0;
+	num = 0;
 	while ((str[i] == ' ') || (str[i] == '\t') || (str[i] == '\n')
 			|| (str[i] == '\v') || (str[i] == '\f') || (str[i] == '\r'))
 		i++;
 	if (str[i] == 45)
-		negativ = 1;
+		neg = 1;
 	if ((str[i] == 45) || (str[i] == 43))
 		i++;
 	while (str[i] >= 48 && str[i] <= 57)
 	{
-		number *= 10;
-		number += ((int)str[i] - 48);
+		num *= 10;
+		num += ((int)str[i] - 48);
 		i++;
 	}
-	if (negativ == 1)
-		return (-number);
+	if (neg == 1)
+		return (-num);
 	else
-		return (number);
+		return (num);
 }

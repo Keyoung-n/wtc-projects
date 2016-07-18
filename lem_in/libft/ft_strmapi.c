@@ -5,24 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/19 14:27:41 by knage             #+#    #+#             */
-/*   Updated: 2016/06/19 14:27:53 by knage            ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:53 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:06 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
-	char			*ptr;
+	char			*new;
 	unsigned int	i;
 
 	i = 0;
-	ptr = ft_strdup(s);
-	while (ptr[i])
+	new = ft_strnew(ft_strlen(s));
+	if (new == NULL)
+		return (NULL);
+	while (s[i])
 	{
-		ptr[i] = f(i, ptr[i]);
+		new[i] = (*f)(i, s[i]);
 		i++;
 	}
-	return (ptr);
+	return (new);
 }

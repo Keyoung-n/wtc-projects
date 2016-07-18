@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/19 14:27:41 by knage             #+#    #+#             */
-/*   Updated: 2016/06/19 14:35:13 by knage            ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:53 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:05 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,9 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	char ch;
-
-	ch = c;
-	while (*s != ch)
-	{
-		if (*s == '\0')
-			return (0);
+	while (*s && *s != c)
 		s++;
-	}
-	return (char *)s;
+	if (*s == c)
+		return ((char*)s);
+	return (0);
 }

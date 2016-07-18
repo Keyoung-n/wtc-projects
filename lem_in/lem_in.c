@@ -6,11 +6,34 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 14:58:40 by knage             #+#    #+#             */
-/*   Updated: 2016/07/12 07:30:16 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/18 14:46:59 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	print_links(t_links *curr)
+{
+    while (curr)
+    {
+		ft_putstr("	link:");
+        ft_putstr(curr->link);
+        ft_putchar('\n');
+        curr = curr->next;
+    }
+}
+
+void	print_list(t_data *curr)
+{
+    while (curr)
+    {
+		ft_putstr("name:");
+        ft_putstr(curr->name);
+        ft_putchar('\n');
+        print_links(curr->links);
+        curr = curr->next;
+    }
+}
 
 void	extract_data(t_env *env, t_data **room)
 {// error 0 // link 1 // point 2 // commnt 3 // special 4
@@ -22,6 +45,8 @@ void	extract_data(t_env *env, t_data **room)
 	temp = *room;
 	while (get_next_line(0, &line))
 	{
+		ft_putstr(line);
+		ft_putchar('\n');
 		type = what_type(line);
 		if (type == 1) 
 			get_link(line, temp);
@@ -36,27 +61,9 @@ void	extract_data(t_env *env, t_data **room)
 			ft_putstr("error: invalid line\n");
 			exit(0);
 		}
+		free(line);
 	}
 	*room = temp;
-}
-
-void	print_links(t_links *curr)
-{
-	while (curr)
-	{
-		ft_printf("link = %s\n", curr->link);
-		curr = curr->next;
-	}
-}
-
-void	print_list(t_data *curr)
-{
-	while (curr)
-	{
-		ft_printf("name = %s, x:y = %i:%i type = %i\n", curr->name, curr->x, curr->y, curr->type);
-		print_links(curr->links);
-		curr = curr->next;
-	}
 }
 
 int main(void)
@@ -66,6 +73,7 @@ int main(void)
 
 	rooms = NULL;
 	extract_data(&env, &rooms);
+	ft_putchar('\n');
 	print_list(rooms);
     //load_data();
 	//algo

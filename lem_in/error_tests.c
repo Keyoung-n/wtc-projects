@@ -6,14 +6,14 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 08:10:00 by knage             #+#    #+#             */
-/*   Updated: 2016/07/08 14:26:13 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/18 16:11:08 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 int	what_type(char *line)
-{// error 0 // link 1 // point 2 // comment 3 // special 4
+{
     int i;
     
     i = 0;
@@ -75,7 +75,7 @@ int is_valid_room(char *str, t_data *curr)
     }
     if (spaces != 1)
         return (0);
-    return (1);
+    return (1); 
 }
 
 int is_valid_link(char *str, t_data *curr)
@@ -86,5 +86,5 @@ int is_valid_link(char *str, t_data *curr)
             return (1);
         curr = curr->next;
     }
-    return (0);
+    return (0); 
 }

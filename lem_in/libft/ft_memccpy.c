@@ -5,29 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/19 14:27:41 by knage             #+#    #+#             */
-/*   Updated: 2016/06/19 14:30:24 by knage            ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:52 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:04 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *s1, const void *s2, int c, size_t n)
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
 	int						i;
-	unsigned char			*tmps1;
-	const unsigned char		*tmps2;
+	unsigned char			*tmp_dest;
+	const unsigned char		*tmp_src;
 
 	i = 0;
-	tmps1 = s1;
-	tmps2 = s2;
+	tmp_dest = dest;
+	tmp_src = src;
 	while (n > 0)
 	{
-		tmps1[i] = tmps2[i];
-		if (tmps1[i] == (unsigned char)c)
-			return (s1 + 1 + i);
+		tmp_dest[i] = tmp_src[i];
+		if (tmp_dest[i] == (unsigned char)c)
+		{
+			return (dest + 1 + i);
+		}
 		i++;
 		n--;
 	}
-	return (NULL);
+	return (0);
 }

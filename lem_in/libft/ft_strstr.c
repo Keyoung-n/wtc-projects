@@ -5,34 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/19 14:27:41 by knage             #+#    #+#             */
-/*   Updated: 2016/06/19 14:27:53 by knage            ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:54 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:06 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(char *big, char *little)
+char	*ft_strstr(const char *s1, const char *s2)
 {
-	int		cmp;
-	int		cmp2;
+	size_t		inner;
 
-	cmp = 0;
-	cmp2 = 0;
-	if (!little[0])
-		return ((char *)(big));
-	while (big[cmp])
+	if (s2[0] == '\0')
+		return ((char*)s1);
+	while (*s1)
 	{
-		if (big[cmp] == little[cmp2])
-			cmp2++;
-		else
+		inner = 0;
+		while (s1[inner] == s2[inner])
 		{
-			cmp -= cmp2;
-			cmp2 = 0;
+			if (s2[inner + 1] == '\0')
+				return ((char*)s1);
+			inner++;
 		}
-		if (!little[cmp2])
-			return ((char *)(big + cmp - cmp2 + 1));
-		cmp++;
+		s1++;
 	}
-	return (NULL);
+	return (0);
 }

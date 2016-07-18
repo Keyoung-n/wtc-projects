@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/19 14:27:41 by knage             #+#    #+#             */
-/*   Updated: 2016/06/19 14:31:51 by knage            ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:52 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:05 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void	*ft_memset(void *dst, int c, size_t n)
 {
-	char	*d;
+	size_t			cmp;
+	unsigned char	*ptrmem;
 
-	d = dst;
-	if (n)
+	cmp = 0;
+	ptrmem = (unsigned char *)dst;
+	while (cmp < n)
 	{
-		while (n--)
-			*d++ = c;
+		ptrmem[cmp] = (unsigned char)c;
+		cmp++;
 	}
 	return (dst);
 }

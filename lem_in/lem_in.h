@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 15:03:00 by knage             #+#    #+#             */
-/*   Updated: 2016/07/09 15:50:09 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/18 11:27:38 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ typedef struct	s_env
 	long	ant_count;
 	int		special[2];
 	int		type;
-	int		size;
-	
+	int		size;	
 }				t_env;
 
 typedef struct	s_links

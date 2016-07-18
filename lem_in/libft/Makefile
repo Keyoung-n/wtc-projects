@@ -5,14 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: knage <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/06/19 14:28:02 by knage             #+#    #+#              #
-#    Updated: 2016/07/07 07:27:18 by knage            ###   ########.fr        #
+#    Created: 2016/06/24 12:36:07 by knage             #+#    #+#              #
+#    Updated: 2016/06/24 12:36:41 by knage            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRC = ft_memset.c			\
+SRC = ft_strmerge.c			\
+	  ft_memset.c			\
 	  ft_itoa.c			\
 	  ft_bzero.c			\
 	  ft_memcpy.c			\
@@ -64,22 +65,16 @@ SRC = ft_memset.c			\
 	  ft_putnbr_fd.c		\
 	  ft_strjoin.c			\
 	  ft_strsplit.c			\
-	  ft_strstr.c			\
-	  ft_abs.c				\
-	  ft_putnbr_base.c 		\
-	  ft_put_pf.c   		\
-	  ft_put_pf2.c    		\
-	  ft_printf.c     		\
-	  ft_putwstr.c 			\
-	  ft_wcslen.c   		\
-	  ft_putwstr_pf.c 		\
-	  ft_printf_lib.c 		\
-	  ft_put_pf3.c			\
-	  get_next_line.c	 	\
-	  ft_atoil.c			\
+	  ft_iswhitespace.c		\
+	  ft_abs.c			\
+	  ft_lstadd.c			\
+	  ft_lstnew.c			\
+	  get_next_line.c		\
 	  ft_isnbr.c			\
 
-SRCO = ft_memset.o			\
+
+SRCO = ft_strmerge.o			\
+	   ft_memset.o			\
 	   ft_itoa.o			\
 	   ft_bzero.o			\
 	   ft_memcpy.o			\
@@ -131,19 +126,11 @@ SRCO = ft_memset.o			\
 	   ft_putnbr_fd.o		\
 	   ft_strjoin.o			\
 	   ft_strsplit.o		\
-	   ft_strstr.o			\
-	   ft_abs.o             \
-	   ft_putnbr_base.o     \
-	   ft_put_pf.o          \
-	   ft_put_pf2.o         \
-	   ft_printf.o          \
-	   ft_putwstr.o         \
-	   ft_wcslen.o          \
-	   ft_putwstr_pf.o      \
-	   ft_printf_lib.o      \
-	   ft_put_pf3.o         \
-	   get_next_line.o	 	\
-	   ft_atoil.o		 	\
+	   ft_iswhitespace.o		\
+	   ft_abs.o			\
+	   ft_lstadd.o			\
+	   ft_lstnew.o			\
+	   get_next_line.o		\
 	   ft_isnbr.o			\
 
 CFLAGS = -Wall -Wextra -Werror

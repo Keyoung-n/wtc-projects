@@ -5,35 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/19 14:27:41 by knage             #+#    #+#             */
-/*   Updated: 2016/06/19 14:27:53 by knage            ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:54 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:06 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <string.h>
 
-char		*ft_strtrim(char const *s)
+char	*ft_strtrim(char const *s)
 {
-	int		i;
-	int		j;
-	char	*str;
+	size_t	start;
+	size_t	end;
+	char	*new;
 
-	i = 0;
-	j = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!str)
-		return (0);
-	while (s[i] == '\n' || s[i] == '\t' || s[i] == 32)
-		i++;
-	while (s[i] != '\0')
-	{
-		str[j] = s[i];
-		i++;
-		j++;
-	}
-	j = j - 1;
-	while (str[j] == '\n' || str[j] == '\t' || str[j] == 32)
-		j--;
-	str[j + 1] = '\0';
-	return (str);
+	start = 0;
+	end = ft_strlen(s);
+	while (ft_iswhitespace(s[start]))
+		start++;
+	while (ft_iswhitespace(s[end - 1]))
+		end--;
+	if (end < start)
+		end = start;
+	new = ft_strnew(end - start);
+	if (new == NULL)
+		return (NULL);
+	return (ft_strncpy(new, s + start, end - start));
 }

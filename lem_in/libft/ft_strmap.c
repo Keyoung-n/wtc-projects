@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/19 14:27:41 by knage             #+#    #+#             */
-/*   Updated: 2016/06/19 14:27:53 by knage            ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:53 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:06 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	size_t	i;
 
 	if (!s || !f)
-		return (NULL);
+	{
+		return (0);
+	}
 	dest = ft_strdup(s);
-	if (dest == NULL)
-		return (NULL);
+	if (dest == 0)
+	{
+		return (0);
+	}
 	i = 0;
 	while (s[i] != '\0')
 	{
