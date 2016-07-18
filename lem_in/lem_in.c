@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 14:58:40 by knage             #+#    #+#             */
-/*   Updated: 2016/07/18 14:46:59 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/18 17:37:17 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int main(void)
 	t_env	env;
 
 	rooms = NULL;
+	env.room_count = 0;
 	extract_data(&env, &rooms);
 	ft_putchar('\n');
 	print_list(rooms);

@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:11:16 by knage             #+#    #+#             */
-/*   Updated: 2016/07/18 16:09:04 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/18 17:39:02 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,19 @@ void	get_room(char *str, t_data **room, t_env *env)
 	temp = *room;
 	if (is_valid_room(str, temp))
 	{
+		env->room_count++;
 		add_room(&temp);
+		temp->bar_code = env->room_count;
 		temp->name = build_str(str, &i, ' ');
 		temp->x = ft_atoi(build_str(str, &i, ' '));
 		temp->y = ft_atoi(build_str(str, &i, ' '));
 		if (env->type)
 		{
 			temp->type = env->type;
+		//	if (env->type == 1)
+		//	   	env->start = env->room_count;
+		//	if (env->type == 2)
+		//		env->end = env->room_count;	
 			env->type = 0;
 		}
 		else
@@ -92,10 +98,10 @@ void	get_link(char *str, t_data *room)
 	{
 		if (ft_strcmp(room->name, temp) == 0)
 		{
-			if (is_valid_link(linkto, re))
+			if ((i = is_valid_link(linkto, re)))
 			{
 				add_link(&room);
-				room->links->link = linkto;
+				room->links->code = i;
 				i = 1;
 			}
 		}

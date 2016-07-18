@@ -6,7 +6,7 @@
 #    By: knage <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/24 12:36:07 by knage             #+#    #+#              #
-#    Updated: 2016/06/24 12:36:41 by knage            ###   ########.fr        #
+#    Updated: 2016/07/18 17:30:21 by knage            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,7 +139,7 @@ all: $(NAME)
 
 $(NAME):
 	@gcc -c $(CFLAGS) $(SRC)
-	@ar ruv $(NAME) $(SRCO)
+	@ar rc $(NAME) $(SRCO)
 	@ranlib $(NAME)
 clean:
 	@rm -f $(SRCO)
