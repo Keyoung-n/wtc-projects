@@ -6,14 +6,14 @@
 #    By: knage <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/18 07:08:08 by knage             #+#    #+#              #
-#    Updated: 2016/07/18 07:09:14 by knage            ###   ########.fr        #
+#    Updated: 2016/07/18 07:09:56 by knage            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 push:
 
-	git add *
-	echo "Enter Your Commit : "
-	read root_path ; git commit -m "$$root_path"
-	git push
-	git push
+	@git add *
+	@echo "Enter Your Commit : "
+	@read root_path ; git commit -m "$$root_path"
+	@git push
+	@git push
