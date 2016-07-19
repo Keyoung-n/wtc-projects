@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 14:58:40 by knage             #+#    #+#             */
-/*   Updated: 2016/07/18 17:37:17 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/19 14:24:27 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_links(t_links *curr)
     while (curr)
     {
 		ft_putstr("	link:");
-        ft_putstr(curr->link);
+        ft_putnbr(curr->code);
         ft_putchar('\n');
         curr = curr->next;
     }
@@ -29,6 +29,8 @@ void	print_list(t_data *curr)
     {
 		ft_putstr("name:");
         ft_putstr(curr->name);
+		ft_putchar(' ');
+		ft_putnbr(curr->bar_code);
         ft_putchar('\n');
         print_links(curr->links);
         curr = curr->next;
@@ -66,18 +68,25 @@ void	extract_data(t_env *env, t_data **room)
 	*room = temp;
 }
 
+void    lem_in(t_data *data, t_env *env)
+{
+    t_room *rooms;
+ 
+    rooms = ant_hill(data, env->room_count);
+    //index 
+    //march
+}
+
 int main(void)
 {
 	t_data	*rooms;
 	t_env	env;
 
 	rooms = NULL;
-	env.room_count = 0;
+	env.room_count = -1;
 	extract_data(&env, &rooms);
 	ft_putchar('\n');
-	print_list(rooms);
-    //load_data();
-	//algo
-	//march
+	lem_in(rooms, &env);	
+	//print_list(rooms);
 	return (0);
 }

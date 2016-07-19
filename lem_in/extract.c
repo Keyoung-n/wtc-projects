@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:11:16 by knage             #+#    #+#             */
-/*   Updated: 2016/07/18 17:39:02 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/19 08:13:54 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ void	get_room(char *str, t_data **room, t_env *env)
 		if (env->type)
 		{
 			temp->type = env->type;
-		//	if (env->type == 1)
-		//	   	env->start = env->room_count;
-		//	if (env->type == 2)
-		//		env->end = env->room_count;	
+			if (env->type == 1)
+				env->start = env->room_count;
+			if (env->type == 2)
+				env->end = env->room_count;	
 			env->type = 0;
 		}
 		else
@@ -94,20 +94,20 @@ void	get_link(char *str, t_data *room)
 	linkto = build_str(str, &i, '-');
 	i = 0;
 	re = room;
-	while (room && i == 0)
+	while (room && i >= 0)
 	{
 		if (ft_strcmp(room->name, temp) == 0)
 		{
-			if ((i = is_valid_link(linkto, re)))
+			if ((i = is_valid_link(linkto, re)) != -1)
 			{
 				add_link(&room);
 				room->links->code = i;
-				i = 1;
+				i = -2;
 			}
 		}
 		room = room->next;
 	}
-	if (i != 1)
+	if (i == -1)
 	{
 		ft_putstr("error: bad link");
 		exit(0);
