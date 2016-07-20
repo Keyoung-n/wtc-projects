@@ -86,10 +86,10 @@ int main(void)
 	env.room_count = -1;
 	extract_data(&env, &rooms);
 	ft_putchar('\n');
-	if (is_valid_map(&env))
+//	if (is_valid_map(&env))
 		lem_in(rooms, &env);
-	else
-		ft_putstr("invalid map\n");	
+///	else
+//		ft_putstr("invalid map\n");	
 	//print_list(rooms);
 	return (0);
 }
