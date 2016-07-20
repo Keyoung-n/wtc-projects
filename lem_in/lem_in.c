@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 14:58:40 by knage             #+#    #+#             */
-/*   Updated: 2016/07/19 14:24:27 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/20 08:10:37 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ int main(void)
 	env.room_count = -1;
 	extract_data(&env, &rooms);
 	ft_putchar('\n');
-	lem_in(rooms, &env);	
+	if (is_valid_map(&env))
+		lem_in(rooms, &env);
+	else
+		ft_putstr("invalid map\n");	
 	//print_list(rooms);
 	return (0);
 }

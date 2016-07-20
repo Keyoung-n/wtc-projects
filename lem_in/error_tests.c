@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 08:10:00 by knage             #+#    #+#             */
-/*   Updated: 2016/07/19 08:14:30 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/20 08:03:05 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,13 @@ int is_valid_link(char *str, t_data *curr)
 		curr = curr->next;
 	}
 	return (-1); 
+}
+
+int is_valid_map(t_env *env)
+{
+	if (env->start == 0)
+		return (0);
+	if (env->end == 0)
+		return (0);
+	return (1);
 }

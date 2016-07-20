@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 15:03:00 by knage             #+#    #+#             */
-/*   Updated: 2016/07/19 13:07:18 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/20 08:07:47 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,5 @@ int				is_valid_link(char *str, t_data *curr);
 int				check_special(char *line, t_env *env);
 int				is_valid_room(char *str, t_data *curr);
 int				what_type(char *line);
+int				is_valid_map(t_env *env);
 #endif
