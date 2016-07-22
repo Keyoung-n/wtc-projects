@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 14:58:40 by knage             #+#    #+#             */
-/*   Updated: 2016/07/20 08:10:37 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/21 16:20:54 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,37 @@
 
 void	print_links(t_links *curr)
 {
-    while (curr)
-    {
+	while (curr)
+	{
 		ft_putstr("	link:");
-        ft_putnbr(curr->code);
-        ft_putchar('\n');
-        curr = curr->next;
-    }
+		ft_putnbr(curr->bar_code);
+		ft_putchar('\n');
+		curr = curr->next;
+	}
 }
 
-void	print_list(t_data *curr)
+void	print_list(t_data *curr, t_env *env)
 {
-    while (curr)
-    {
+	ft_putstr("start: ");
+	ft_putnbr(env->special[0]);
+	ft_putchar('\n');
+	ft_putstr("end: ");
+	ft_putnbr(env->special[1]);
+	ft_putchar('\n');
+	while (curr)
+	{
 		ft_putstr("name:");
-        ft_putstr(curr->name);
+		ft_putstr(curr->name);
 		ft_putchar(' ');
 		ft_putnbr(curr->bar_code);
-        ft_putchar('\n');
-        print_links(curr->links);
-        curr = curr->next;
-    }
+		ft_putchar('\n');
+		print_links(curr->links);
+		curr = curr->next;
+	}
 }
 
 void	extract_data(t_env *env, t_data **room)
-{// error 0 // link 1 // point 2 // commnt 3 // special 4
+{
 	char	*line;
 	int		type;
 	t_data	*temp;
@@ -50,7 +56,7 @@ void	extract_data(t_env *env, t_data **room)
 		ft_putstr(line);
 		ft_putchar('\n');
 		type = what_type(line);
-		if (type == 1) 
+		if (type == 1)
 			get_link(line, temp);
 		else if (type == 2)
 			get_room(line, &temp, env);
@@ -68,16 +74,23 @@ void	extract_data(t_env *env, t_data **room)
 	*room = temp;
 }
 
-void    lem_in(t_data *data, t_env *env)
+void	lem_in(t_data *data, t_env *env)
 {
-    t_room *rooms;
- 
-    rooms = ant_hill(data, env->room_count);
-    //index 
-    //march
+	t_data	rooms[env->room_count + 1];
+	int		o[env->room_count + 1];
+	int		i;
+
+	i = 0;
+	ant_hill(data, rooms);
+	env->room_count++;
+	env->o = o;
+	env->a = rooms;
+	ft_leminalg(env);
+//index
+//march
 }
 
-int main(void)
+int		main(void)
 {
 	t_data	*rooms;
 	t_env	env;
@@ -86,10 +99,7 @@ int main(void)
 	env.room_count = -1;
 	extract_data(&env, &rooms);
 	ft_putchar('\n');
-//	if (is_valid_map(&env))
-		lem_in(rooms, &env);
-///	else
-//		ft_putstr("invalid map\n");	
-	//print_list(rooms);
+	print_list(rooms, &env);
+	lem_in(rooms, &env);
 	return (0);
 }

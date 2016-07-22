@@ -10,22 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-t_ant	*get_routes(t_room *rooms, int n_ants)
+void    algo(t_env *env)
 {
-	t_ant ants;
-
-	ants = (t_ant*)malloc(sizeof(t_ant*) * n_ants);
-	simulate(ants):
-	return (ants);
-}
-
-void	simulate(t_ant *ants, int n_ants)
-{
-	int x;
-
-	x = 0;
-	while (x != n_ants)
-	{
-		       
-	}
+    t_links *ants(env->ant_count);
+    int     ant_out;
+    
+    ant_out = 1;
+    env->temp = 0;
+    e->
+    ft_initrooms(env);
+    while (env->temp != env->ant_count)
+    {
+        
+    }
 }

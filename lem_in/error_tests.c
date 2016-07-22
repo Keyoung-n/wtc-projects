@@ -6,15 +6,15 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 08:10:00 by knage             #+#    #+#             */
-/*   Updated: 2016/07/20 08:03:05 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/21 12:37:04 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int	what_type(char *line)
+int		what_type(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (line[0] == '#')
@@ -40,7 +40,7 @@ int	what_type(char *line)
 	return (0);
 }
 
-int	is_copy(char *str, t_data *curr)
+int		is_copy(char *str, t_data *curr)
 {
 	while (curr)
 	{
@@ -51,10 +51,10 @@ int	is_copy(char *str, t_data *curr)
 	return (0);
 }
 
-int is_valid_room(char *str, t_data *curr)
+int		is_valid_room(char *str, t_data *curr)
 {
-	int i;
-	int spaces;
+	int	i;
+	int	spaces;
 
 	i = 0;
 	spaces = 0;
@@ -75,10 +75,10 @@ int is_valid_room(char *str, t_data *curr)
 	}
 	if (spaces != 1)
 		return (0);
-	return (1); 
+	return (1);
 }
 
-int is_valid_link(char *str, t_data *curr)
+int		is_valid_link(char *str, t_data *curr)
 {
 	while (curr)
 	{
@@ -86,14 +86,5 @@ int is_valid_link(char *str, t_data *curr)
 			return (curr->bar_code);
 		curr = curr->next;
 	}
-	return (-1); 
-}
-
-int is_valid_map(t_env *env)
-{
-	if (env->start == 0)
-		return (0);
-	if (env->end == 0)
-		return (0);
-	return (1);
+	return (-1);
 }

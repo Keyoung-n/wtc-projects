@@ -6,16 +6,16 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:11:16 by knage             #+#    #+#             */
-/*   Updated: 2016/07/19 08:13:54 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/21 12:27:30 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void    add_room(t_data **curr)
+void	add_room(t_data **curr)
 {
-	t_data *head;
-	t_data *temp;
+	t_data	*head;
+	t_data	*temp;
 
 	temp = *curr;
 	if (*curr == NULL)
@@ -23,7 +23,7 @@ void    add_room(t_data **curr)
 	else
 		head = temp;
 	temp = (t_data *)malloc(sizeof(t_data));
-	temp->next  = head;
+	temp->next = head;
 	head = temp;
 	temp = head;
 	*curr = temp;
@@ -32,13 +32,21 @@ void    add_room(t_data **curr)
 void	get_ant_numbers(t_env *env)
 {
 	char	*line;
+	int		i;
 	long	ant_numbers;
 
+	i = 0;
 	get_next_line(0, &line);
 	ft_putstr(line);
 	ft_putchar('\n');
+	while (line[i] && i != -1)
+	{
+		if (ft_isdigit(line[i]) != 1)
+			i = -2;
+		i++;
+	}
 	ant_numbers = ft_atoi(line);
-	if (ant_numbers != 0)
+	if (ant_numbers > 0 && i != -1)
 		env->ant_count = ant_numbers;
 	else
 	{
@@ -49,8 +57,8 @@ void	get_ant_numbers(t_env *env)
 
 void	get_room(char *str, t_data **room, t_env *env)
 {
-	int 	i;
-	t_data *temp;
+	int		i;
+	t_data	*temp;
 
 	i = 0;
 	temp = *room;
@@ -66,9 +74,9 @@ void	get_room(char *str, t_data **room, t_env *env)
 		{
 			temp->type = env->type;
 			if (env->type == 1)
-				env->start = env->room_count;
+				env->special[0] = env->room_count;
 			if (env->type == 2)
-				env->end = env->room_count;	
+				env->special[1] = env->room_count;
 			env->type = 0;
 		}
 		else
@@ -101,7 +109,7 @@ void	get_link(char *str, t_data *room)
 			if ((i = is_valid_link(linkto, re)) != -1)
 			{
 				add_link(&room);
-				room->links->code = i;
+				room->links->bar_code = i;
 				i = -2;
 			}
 		}
@@ -114,19 +122,19 @@ void	get_link(char *str, t_data *room)
 	}
 }
 
-int    check_special(char *line, t_env *env)
+int		check_special(char *line, t_env *env)
 {
 	if (env->type != 0)
 		env->type = -1;
 	if (!(ft_strcmp(line, "##start")))
 	{
-		if (env->special[0] != 1 && (env->special[0] = 1))
+		if (env->special[2] != 1 && (env->special[2] = 1))
 			return (1);
 		env->type = -1;
 	}
 	else if (!(ft_strcmp(line, "##end")))
 	{
-		if (env->special[1] != 1 && (env->special[1] = 1))
+		if (env->special[3] != 1 && (env->special[3] = 1))
 			return (2);
 		env->type = -1;
 	}
