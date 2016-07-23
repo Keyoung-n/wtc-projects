@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:11:16 by knage             #+#    #+#             */
-/*   Updated: 2016/07/21 12:27:30 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/22 09:08:39 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,7 @@ void	get_room(char *str, t_data **room, t_env *env)
 		temp->name = build_str(str, &i, ' ');
 		temp->x = ft_atoi(build_str(str, &i, ' '));
 		temp->y = ft_atoi(build_str(str, &i, ' '));
-		if (env->type)
-		{
-			temp->type = env->type;
-			if (env->type == 1)
-				env->special[0] = env->room_count;
-			if (env->type == 2)
-				env->special[1] = env->room_count;
-			env->type = 0;
-		}
-		else
-			temp->type = 0;
+		check_type(env, temp);
 	}
 	else
 	{
@@ -115,11 +105,8 @@ void	get_link(char *str, t_data *room)
 		}
 		room = room->next;
 	}
-	if (i == -1)
-	{
-		ft_putstr("error: bad link");
+	if (i == -1 && ft_printf("error: bad link"))
 		exit(0);
-	}
 }
 
 int		check_special(char *line, t_env *env)

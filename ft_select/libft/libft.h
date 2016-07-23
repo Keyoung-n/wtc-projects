@@ -19,13 +19,19 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <wchar.h>
-# define BUFF_SIZE 10
 
 typedef struct		s_c
 {
 	char	c;
 	int		(*f)(va_list ap, int nb);
 }					t_c;
+
+typedef struct		s_list
+{
+    void			*content;
+    size_t			content_size;
+    struct s_list	*next;
+}					t_list;
 
 char				*ft_strchr(const char *s, int c);
 int					ft_atoi(const char *src);
@@ -108,4 +114,8 @@ void				ft_putwstr(wchar_t *ws);
 int                 get_next_line(const int fd, char **line);
 long                ft_atoil(const char *str);
 int					ft_isnbr(char c);
+char                *ft_strmerge(char *a, char *b);
+int					get_next_line(int const fd, char **line);
+void                ft_lstadd(t_list **alst, t_list *new);
+t_list              *ft_lstnew(void const *content, size_t content_size);
 #endif

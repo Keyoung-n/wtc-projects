@@ -6,7 +6,7 @@
 #    By: knage <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/24 12:36:07 by knage             #+#    #+#              #
-#    Updated: 2016/07/18 17:30:21 by knage            ###   ########.fr        #
+#    Updated: 2016/07/22 08:42:35 by knage            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 SRC = ft_strmerge.c			\
 	  ft_memset.c			\
-	  ft_itoa.c			\
+	  ft_itoa.c				\
 	  ft_bzero.c			\
 	  ft_memcpy.c			\
 	  ft_memccpy.c			\
@@ -34,7 +34,7 @@ SRC = ft_strmerge.c			\
 	  ft_strnstr.c			\
 	  ft_strcmp.c			\
 	  ft_strncmp.c			\
-	  ft_atoi.c			\
+	  ft_atoi.c				\
 	  ft_isalpha.c			\
 	  ft_isdigit.c			\
 	  ft_isascii.c			\
@@ -66,14 +66,25 @@ SRC = ft_strmerge.c			\
 	  ft_strjoin.c			\
 	  ft_strsplit.c			\
 	  ft_iswhitespace.c		\
-	  ft_abs.c			\
+	  ft_abs.c				\
 	  ft_lstadd.c			\
 	  ft_lstnew.c			\
 	  get_next_line.c		\
 	  ft_isnbr.c			\
+	  ft_putnbr_base.c		\
+	  ft_put_pf.c			\
+	  ft_put_pf2.c			\
+	  ft_printf.c			\
+	  ft_putwstr.c			\
+	  ft_wcslen.c			\
+	  ft_putwstr_pf.c		\
+	  ft_printf_lib.c		\
+	  ft_put_pf3.c			\
+	  ft_atoil.c			\
 
 
-SRCO = ft_strmerge.o			\
+
+SRCO = ft_strmerge.o		\
 	   ft_memset.o			\
 	   ft_itoa.o			\
 	   ft_bzero.o			\
@@ -126,12 +137,22 @@ SRCO = ft_strmerge.o			\
 	   ft_putnbr_fd.o		\
 	   ft_strjoin.o			\
 	   ft_strsplit.o		\
-	   ft_iswhitespace.o		\
-	   ft_abs.o			\
+	   ft_iswhitespace.o	\
+	   ft_abs.o			 	\
 	   ft_lstadd.o			\
 	   ft_lstnew.o			\
 	   get_next_line.o		\
 	   ft_isnbr.o			\
+	   ft_putnbr_base.o     \
+	   ft_put_pf.o          \
+	   ft_put_pf2.o         \
+	   ft_printf.o          \
+	   ft_putwstr.o         \
+	   ft_wcslen.o          \
+	   ft_putwstr_pf.o      \
+	   ft_printf_lib.o      \
+	   ft_put_pf3.o         \
+	   ft_atoil.o           \
 
 CFLAGS = -Wall -Wextra -Werror
 

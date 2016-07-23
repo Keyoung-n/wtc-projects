@@ -16,6 +16,10 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include <wchar.h>
 # include "get_next_line.h"
 
 typedef struct		s_list
@@ -24,6 +28,12 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_c
+{
+    char	c;
+    int		(*f)(va_list ap, int nb);
+}					t_c;
 
 void				ft_putchar(char c);
 void				ft_putnbr(int n);
@@ -85,4 +95,28 @@ t_list              *ft_lstnew(void const *content, size_t content_size);
 char                *ft_strmerge(char *a, char *b);
 int					get_next_line(int const fd, char **line);
 int					ft_isnbr(char c);
+int					ft_abs(int n);
+int					ft_num_whitespaces(int *i, const char *format);
+void				ft_print_whitespace(int n);
+int					ft_putnbrl_pf(va_list ap, const char *format, int *i);
+int					ft_putnbrll_pf(va_list ap, const char *format, int *i);
+int					sft_putwchar(wchar_t *s);
+int					ft_putnbr_base(long nb, const char *base);
+int					ft_putnbr_base_u(unsigned int nb, const char *base);
+int					ft_return_nb_nb(long nb, const char *base);
+int					ft_return_nb_nb_di(int nb, const char *base);
+int					ft_putnbr_pf(va_list ap, int nbb);
+int					ft_putnbr_u_pf(va_list ap, int nbb);
+int					ft_putchar_pf(va_list ap, int nbb);
+int					ft_putstr_pf(va_list ap, int nbb);
+int					ft_putoctal_pf(va_list ap, int nbb);
+int					ft_putz_pf(va_list ap, const char *format, int *i);
+int					ft_puthexa_min_pf(va_list ap, int nbb);
+int					ft_puthexa_max_pf(va_list ap, int nbb);
+int					ft_puthexa_pf(va_list ap, int nbb);
+int					ft_printf(char const *str, ...);
+int					ft_putwchar_pf(va_list ap, int nbb);
+size_t				ft_wcslen(const wchar_t *ws);
+int					ft_putwstr_pf(va_list ap, int nbb);
+void				ft_putwstr(wchar_t *ws);
 #endif

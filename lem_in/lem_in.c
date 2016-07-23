@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 14:58:40 by knage             #+#    #+#             */
-/*   Updated: 2016/07/21 16:20:54 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/22 13:35:03 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,22 @@ void	print_links(t_links *curr)
 	}
 }
 
-void	print_list(t_data *curr, t_env *env)
+void	print_list(t_data *rooms, t_env *env)
 {
+	int i;
+
+	i = 0;
 	ft_putstr("start: ");
 	ft_putnbr(env->special[0]);
 	ft_putchar('\n');
 	ft_putstr("end: ");
 	ft_putnbr(env->special[1]);
 	ft_putchar('\n');
-	while (curr)
+	while (i != env->room_count)
 	{
-		ft_putstr("name:");
-		ft_putstr(curr->name);
-		ft_putchar(' ');
-		ft_putnbr(curr->bar_code);
-		ft_putchar('\n');
-		print_links(curr->links);
-		curr = curr->next;
+		ft_printf("name: %s bar_code: %i\n", rooms[i].name, rooms[i].bar_code);
+		print_links(rooms[i].links);
+		i++;
 	}
 }
 
@@ -51,10 +50,8 @@ void	extract_data(t_env *env, t_data **room)
 
 	get_ant_numbers(env);
 	temp = *room;
-	while (get_next_line(0, &line))
+	while (get_next_line(0, &line) && ft_printf("%s\n", line))
 	{
-		ft_putstr(line);
-		ft_putchar('\n');
 		type = what_type(line);
 		if (type == 1)
 			get_link(line, temp);
@@ -77,17 +74,14 @@ void	extract_data(t_env *env, t_data **room)
 void	lem_in(t_data *data, t_env *env)
 {
 	t_data	rooms[env->room_count + 1];
-	int		o[env->room_count + 1];
-	int		i;
+	int		room[env->room_count + 1];
 
-	i = 0;
-	ant_hill(data, rooms);
+	ant_hill(data, rooms, env->room_count);
 	env->room_count++;
-	env->o = o;
-	env->a = rooms;
-	ft_leminalg(env);
-//index
-//march
+	env->room = room;
+	env->maze = rooms;
+	print_list(rooms, env);
+	algo(env);
 }
 
 int		main(void)
@@ -99,7 +93,6 @@ int		main(void)
 	env.room_count = -1;
 	extract_data(&env, &rooms);
 	ft_putchar('\n');
-	print_list(rooms, &env);
 	lem_in(rooms, &env);
 	return (0);
 }

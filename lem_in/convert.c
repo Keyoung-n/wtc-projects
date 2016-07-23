@@ -6,24 +6,24 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/19 08:20:47 by knage             #+#    #+#             */
-/*   Updated: 2016/07/21 15:38:58 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/22 12:49:30 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	ant_hill(t_data *curr, t_data *rooms)
+void	ant_hill(t_data *curr, t_data *rooms, int total)
 {
     int i;
     
-    i = 0;
+    i = total;
 	while (curr)
 	{
 		rooms[i].name = curr->name;
 		rooms[i].bar_code = curr->bar_code;
 		rooms[i].links = curr->links;
 		free(curr);
-		i++;
+		i--;
 		curr = curr->next;
 	}
 }

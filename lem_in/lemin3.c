@@ -4,7 +4,7 @@ int     ft_init4(t_env *e)
 {
     int     x;
     
-    x = 0;
+    x = -1;
     while (++x < e->room_count)
         e->o[x] = 0;
     return (0);
@@ -24,7 +24,7 @@ int     ft_init3(t_env *e, t_links *t, int node)//assigns new nodes from current
     return (0);
 }
 
-int     init2(t_env *e)
+int     ft_init2(t_env *e)
 {
     t_links *tmp;
     

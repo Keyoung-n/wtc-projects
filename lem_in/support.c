@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 08:14:58 by knage             #+#    #+#             */
-/*   Updated: 2016/07/21 07:12:47 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/22 09:08:42 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,19 @@ char	*build_str(char *str, int *i, char limit)
 	ret[temp] = '\0';
 	(*i)++;
 	return (ret);
+}
+
+void    check_type(t_env *env, t_data *temp)
+{
+	if (env->type)
+	{
+		temp->type = env->type;
+		if (env->type == 1)
+			env->special[0] = env->room_count;
+		if (env->type == 2)
+			env->special[1] = env->room_count;
+		env->type = 0;
+	}
+	else
+		temp->type = 0;
 }
