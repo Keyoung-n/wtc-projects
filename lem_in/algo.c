@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/19 14:31:08 by knage             #+#    #+#             */
-/*   Updated: 2016/07/23 14:18:16 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/23 15:42:46 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	start_wave(t_env *env)
 {
 	t_links	*temp;
 
-	temp = env->maze[0].links;
+	temp = env->maze[env->special[0]].links;
 	while (temp)
 	{
 		if (env->room[temp->bar_code] == 0)
@@ -91,13 +91,12 @@ void	algo(t_env *env)
 	env->fpaths = ants;
 	env->nodes_count[0] = 0;
 	env->nodes_count[1] = 1;
-	while (env->helper != env->ant_count)
+	while (env->helper < env->ant_count)
 	{
 		env->nodes_count[0] = (env->nodes_count[0] == 0);
 		env->nodes_count[1] = (env->nodes_count[1] == 0);
 		continue_wave(env);
 		start_wave(env);
-		env->stack[env->nodes_count[1]] = 0;
 		ant_out = (ant_out == 0);
 		if (ant_out == 0)
 			ant_wait(env);
