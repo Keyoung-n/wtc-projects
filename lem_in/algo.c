@@ -12,13 +12,37 @@
 
 #include "lem_in.h"
 
+void    finish(t_env *env)
+{
+    t_links *temp[env->ant_count];
+    t_links *path[2];
+    
+    env->helper = 0;
+    path[1] = env->fpaths[env->helper]->path;
+    ft_initrooms(env);
+    while (env->helper < env->ant_count)
+    {
+        path[1] = env->fpaths[env->helper]->path;
+        temp[env->helper] = 0;
+        while (path[1])
+        {
+            path[0] = (t_links *)malloc(sizeof(t_links));
+            path[0]->bar_code = path[1]->bar_code;
+            path[0]->next = temp[env->helper];
+            temp[env->helper] = path[0];
+            path[1] = path[1]->next;
+        }
+        env->helper++;
+    }
+    final(env, temp);
+}
 
 void    continue_wave(t_env *env)
 {
     t_links *temp;
     t_links *temp1;
     
-    temp = env->room[env->nodes_count[1]];
+    temp = env->stack[env->nodes_count[1]];
     while (temp)
     {
         temp1 = env->maze[temp->bar_code].links;
@@ -48,7 +72,6 @@ void    start_wave(t_env *env)
         {
             env->helper++;
             env->fpaths[env->helper] = temp;
-            ft_printf("path found");
         }
         temp = temp->next;
     }
@@ -60,7 +83,7 @@ void    algo(t_env *env)
     int     ant_out;
     
     ant_out = 1;
-    env->helper = 0;
+    env->helper = -1;
     ft_initrooms(env);
     env->stack[0] = 0;
     env->stack[1] = 0;
@@ -70,11 +93,15 @@ void    algo(t_env *env)
     env->nodes_count[1] = 1;
     while (env->helper != env->ant_count)
     {
-        ft_printf("%i:%i\n", env->nodes_count[0], env->nodes_count[1]);
         env->nodes_count[0] = (env->nodes_count[0] == 0);
         env->nodes_count[1] = (env->nodes_count[1] == 0);
-//        continue_wave(env);
+        continue_wave(env);
         start_wave(env);
         env->stack[env->nodes_count[1]] = 0;
+        ant_out = (ant_out == 0);
+        if (ant_out == 0)
+            ant_wait(env);
+        env->stack[env->nodes_count[1]] = 0;
     }
+    finish(env);
 }

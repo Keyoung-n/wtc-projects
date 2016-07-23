@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 14:58:40 by knage             #+#    #+#             */
-/*   Updated: 2016/07/22 13:35:03 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/23 12:46:18 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,12 @@ void	lem_in(t_data *data, t_env *env)
 	env->room_count++;
 	env->room = room;
 	env->maze = rooms;
-	print_list(rooms, env);
+	if (is_end(*env) == 0)
+	{
+		ft_printf("error: no path found");
+		exit(0);
+	}
+	//print_list(rooms, env);
 	algo(env);
 }
 

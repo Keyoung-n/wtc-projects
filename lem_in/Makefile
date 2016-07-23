@@ -6,14 +6,14 @@
 #    By: knage <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 15:03:57 by knage             #+#    #+#              #
-#    Updated: 2016/07/22 10:37:04 by knage            ###   ########.fr        #
+#    Updated: 2016/07/23 11:35:04 by knage            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem_in
 
 SRC =	lem_in.c extract.c error_tests.c support.c convert.c \
-	algo.c init.c libft/libft.a
+	algo.c init.c print.c libft/libft.a
 
 all: $(NAME)
 

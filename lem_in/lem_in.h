@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 15:03:00 by knage             #+#    #+#             */
-/*   Updated: 2016/07/22 13:22:35 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/23 10:17:22 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,12 @@ int				is_valid_link(char *str, t_data *curr);
 int				check_special(char *line, t_env *env);
 int				is_valid_room(char *str, t_data *curr);
 int				what_type(char *line);
+int             final(t_env *e, t_links **tmp);
 int				is_valid_map(t_env *env);
 void			algo(t_env *env);
 void			setnode(t_env *env, int node);
 void            print_links(t_links *curr);
+void            fill_room(t_env *env, t_links *temp, int node);
+void            ant_wait(t_env *env);
+int             is_end(t_env env);
 #endif
