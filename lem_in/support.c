@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 08:14:58 by knage             #+#    #+#             */
-/*   Updated: 2016/07/22 09:08:42 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/23 14:20:12 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*build_str(char *str, int *i, char limit)
 	return (ret);
 }
 
-void    check_type(t_env *env, t_data *temp)
+void	check_type(t_env *env, t_data *temp)
 {
 	if (env->type)
 	{

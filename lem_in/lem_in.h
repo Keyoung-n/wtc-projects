@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 15:03:00 by knage             #+#    #+#             */
-/*   Updated: 2016/07/23 10:17:22 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/23 14:27:27 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ typedef struct	s_data
 
 typedef struct	s_env
 {
-    long    ant_count;
-    long    room_count;
-    t_data  *maze;
-    int     special[4];
-    int     type;
-    int     size;
-    int     *room;
-    int      nodes_count[2];
-    int      helper;
-    t_links  **fpaths;
-    t_links  *start;
-    t_links  *stack[2];
+	long	ant_count;
+	long	room_count;
+	t_data	*maze;
+	int		special[4];
+	int		type;
+	int		size;
+	int		*room;
+	int		nodes_count[2];
+	int		helper;
+	t_links	**fpaths;
+	t_links	*start;
+	t_links	*stack[2];
 }				t_env;
 
 char			*build_str(char *str, int *i, char limit);
@@ -61,12 +61,12 @@ int				is_valid_link(char *str, t_data *curr);
 int				check_special(char *line, t_env *env);
 int				is_valid_room(char *str, t_data *curr);
 int				what_type(char *line);
-int             final(t_env *e, t_links **tmp);
+int				final(t_env *e, t_links **tmp);
 int				is_valid_map(t_env *env);
 void			algo(t_env *env);
 void			setnode(t_env *env, int node);
-void            print_links(t_links *curr);
-void            fill_room(t_env *env, t_links *temp, int node);
-void            ant_wait(t_env *env);
-int             is_end(t_env env);
+void			print_links(t_links *curr);
+void			fill_room(t_env *env, t_links *temp, int node);
+void			ant_wait(t_env *env);
+int				is_end(t_env env);
 #endif

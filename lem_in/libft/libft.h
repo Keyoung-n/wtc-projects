@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/24 12:39:00 by knage             #+#    #+#             */
-/*   Updated: 2016/06/24 12:39:13 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/23 14:32:34 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct		s_list
 
 typedef struct		s_c
 {
-    char	c;
-    int		(*f)(va_list ap, int nb);
+	char	c;
+	int		(*f)(va_list ap, int nb);
 }					t_c;
 
 void				ft_putchar(char c);
@@ -88,11 +88,11 @@ int					ft_strnqu(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 void				ft_putstr_fd(const char *s, int fd);
 void				ft_putchar_fd(char c, int fd);
-int                 ft_iswhitespace(char c);
+int					ft_iswhitespace(char c);
 int					ft_abs(int i);
-void                ft_lstadd(t_list **alst, t_list *new);
-t_list              *ft_lstnew(void const *content, size_t content_size);
-char                *ft_strmerge(char *a, char *b);
+void				ft_lstadd(t_list **alst, t_list *new);
+t_list				*ft_lstnew(void const *content, size_t content_size);
+char				*ft_strmerge(char *a, char *b);
 int					get_next_line(int const fd, char **line);
 int					ft_isnbr(char c);
 int					ft_abs(int n);

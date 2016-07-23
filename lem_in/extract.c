@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:11:16 by knage             #+#    #+#             */
-/*   Updated: 2016/07/22 09:08:39 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/23 14:11:26 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,18 @@ void	get_ant_numbers(t_env *env)
 void	get_room(char *str, t_data **room, t_env *env)
 {
 	int		i;
+	char	*name;
 	t_data	*temp;
 
 	i = 0;
+	name = build_str(str, &i, ' ');
 	temp = *room;
-	if (is_valid_room(str, temp))
+	if (is_valid_room(str, temp) && name[0] != 'L')
 	{
 		env->room_count++;
 		add_room(&temp);
 		temp->bar_code = env->room_count;
-		temp->name = build_str(str, &i, ' ');
+		temp->name = name;
 		temp->x = ft_atoi(build_str(str, &i, ' '));
 		temp->y = ft_atoi(build_str(str, &i, ' '));
 		check_type(env, temp);

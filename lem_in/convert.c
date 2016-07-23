@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/19 08:20:47 by knage             #+#    #+#             */
-/*   Updated: 2016/07/22 12:49:30 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/23 14:16:28 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ant_hill(t_data *curr, t_data *rooms, int total)
 {
-    int i;
-    
-    i = total;
+	int	i;
+
+	i = total;
 	while (curr)
 	{
 		rooms[i].name = curr->name;

@@ -6,41 +6,11 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 14:58:40 by knage             #+#    #+#             */
-/*   Updated: 2016/07/23 12:46:18 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/23 14:19:49 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-void	print_links(t_links *curr)
-{
-	while (curr)
-	{
-		ft_putstr("	link:");
-		ft_putnbr(curr->bar_code);
-		ft_putchar('\n');
-		curr = curr->next;
-	}
-}
-
-void	print_list(t_data *rooms, t_env *env)
-{
-	int i;
-
-	i = 0;
-	ft_putstr("start: ");
-	ft_putnbr(env->special[0]);
-	ft_putchar('\n');
-	ft_putstr("end: ");
-	ft_putnbr(env->special[1]);
-	ft_putchar('\n');
-	while (i != env->room_count)
-	{
-		ft_printf("name: %s bar_code: %i\n", rooms[i].name, rooms[i].bar_code);
-		print_links(rooms[i].links);
-		i++;
-	}
-}
 
 void	extract_data(t_env *env, t_data **room)
 {
@@ -85,7 +55,6 @@ void	lem_in(t_data *data, t_env *env)
 		ft_printf("error: no path found");
 		exit(0);
 	}
-	//print_list(rooms, env);
 	algo(env);
 }
 

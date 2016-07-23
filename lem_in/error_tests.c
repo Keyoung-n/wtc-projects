@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 08:10:00 by knage             #+#    #+#             */
-/*   Updated: 2016/07/23 13:08:54 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/23 14:22:38 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ int		is_valid_link(char *str, t_data *curr)
 	return (-1);
 }
 
-int     is_end(t_env env)
+int		is_end(t_env env)
 {
-	int i;
-	int	j;
-	t_links *temp;
+	int		i;
+	int		j;
+	t_links	*temp;
 
 	ft_initrooms(&env);
 	i = -1;
@@ -105,7 +105,8 @@ int     is_end(t_env env)
 				temp = env.maze[j].links;
 				while (temp)
 				{
-					env.room[temp->bar_code] != 1 && (env.room[temp->bar_code] = 2);
+					if (env.room[temp->bar_code] != 1)
+						env.room[temp->bar_code] = 2;
 					if (temp->bar_code == env.special[1])
 						return (1);
 					temp = temp->next;
