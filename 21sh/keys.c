@@ -51,8 +51,8 @@ char    *ft_get_line()
             size++;
             ret = add_char(ret, buf[0], size);
         }
-        tputs(tgetstr("cd", NULL), 1, ft_putchar_i);
-        ft_putstr(ret);
+ //       tputs(tgetstr("cd", NULL), 1, ft_putchar_i);
+   //     ft_putstr(ret);
     }
     ft_putchar('\n');
     return (ret);
