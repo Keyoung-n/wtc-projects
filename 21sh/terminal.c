@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/25 09:57:16 by knage             #+#    #+#             */
-/*   Updated: 2016/07/25 10:16:59 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/26 10:34:59 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	change_term(t_env *env)
     tcgetattr(0, &env->termios);
     env->termios.c_lflag &= ~(ECHO | ICANON);
     env->termios.c_cc[VMIN] = 1;
-    tcsetattr(0, TCSANOW, &env->termios);
+	env->termios.c_cc[VTIME] = 0;
+	tcsetattr(0, TCSANOW, &env->termios);
     tputs(tgetstr("ti", NULL), 1, ft_putchar_i);
     tputs(tgetstr("ho", NULL), 1, ft_putchar_i);
-    tputs(tgetstr("ve", NULL), 1, ft_putchar_i);
 }
 
 t_env	*get_env(void)
@@ -42,7 +42,7 @@ void	change_back(void)
     
     env = get_env();
     env->termios.c_lflag &= ~(ECHO | ICANON);
-    tcsetattr(0, 0, &env->termios);
+	tcsetattr(0, TCSANOW, &env->termios);
     tputs(tgetstr("te", NULL), 1, ft_putchar_i);
     tputs(tgetstr("ve", NULL), 1, ft_putchar_i);
 }

@@ -12,24 +12,36 @@
 
 #include "21sh.h"
 
-char    *add_char(char *str, char c, int slide)
+char    *add_char(char **str, char c, int cur)
 {
     char    *ret;
     int     i;
+    int     j;
     
-    i = slide + 1;
-    ret = (char *)malloc(sizeof(char*) * ft_strlen(str) + 2);
-    ret[i] = c;
-    ret[i + 1] = '\0';
-    free(str);
+    i = 0;
+    j = 0;
+    cur -= 3;
+    ret = (char *)malloc(sizeof(char*) * ft_strlen(*str) + 2);
+    while (*str[i] != '\0')
+    {
+        ret[j] = *str[i];
+        if (j + 1 == cur)
+            j++;
+        j++;
+        i++;
+    }
+    ret[cur] = c;
+    ret[cur + 1] = '\0';
+    free(*str);
     return (ret);
 }
 
-int     keys(char c)
+int     keys(char **ret, char c, int cposition)
 {
-    char k;
+    char *str;
     
-    k = c;
+    str = *ret;
+    *ret = add_char(&str, c, cposition);
     return (1);
 }
 
@@ -42,17 +54,18 @@ char    *ft_get_line()
     
     size = 0;
     cposition = 0;
-    ret = (char*)malloc(sizeof(char*) * 1);
+    ret = ft_strnew(1);
     while ((read(0, buf, 4)) && buf[0] != '\n')
     {
-        ft_putstr(ret);
-        if (keys(buf[0]))
+        if (keys(&ret, buf[0], cposition))
         {
-            size++;
-            ret = add_char(ret, buf[0], size);
+            tputs(tgetstr("cr", NULL), 1, ft_putchar_i);
+            tputs(tgetstr("ce", NULL), 1, ft_putchar_i);
+            ft_putstr("~> ");
+            ft_putstr(ret);
+            cposition++;
         }
- //       tputs(tgetstr("cd", NULL), 1, ft_putchar_i);
-   //     ft_putstr(ret);
+        ft_bzero(buf, 4);
     }
     ft_putchar('\n');
     return (ret);

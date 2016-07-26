@@ -96,6 +96,7 @@ int		main(void)
 	int				i;
 	int				n;
 
+    change_term(&env);
 	n = 0;
 	i = 0;
 	while (environ[i] != NULL)
@@ -111,7 +112,6 @@ int		main(void)
 		ft_strcpy(env.envirobk[n], environ[n]);
 		n++;
 	}
-    change_term(&env);
     env = ft_minishell(&env);
 	return (0);
 }
