@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/25 09:57:16 by knage             #+#    #+#             */
-/*   Updated: 2016/07/26 10:34:59 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/28 12:34:48 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	change_term(t_env *env)
 {
     tgetent(NULL, getenv("TERM"));
     tcgetattr(0, &env->termios);
-    env->termios.c_lflag &= ~(ECHO | ICANON);
+    env->termios.c_lflag &= ~(ICANON);	
     env->termios.c_cc[VMIN] = 1;
 	env->termios.c_cc[VTIME] = 0;
 	tcsetattr(0, TCSANOW, &env->termios);
