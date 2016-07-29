@@ -6,7 +6,7 @@
 #    By: knage <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/10 13:40:37 by knage             #+#    #+#              #
-#    Updated: 2016/07/26 10:42:05 by knage            ###   ########.fr        #
+#    Updated: 2016/07/29 09:43:22 by knage            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIB= includes/libft.a
 
 CC=	clang -Wall -Werror -Wextra
 
-SRC= main.c extras.c func.c help.c echo.c keys.c terminal.c
+SRC= main.c extras.c func.c help.c echo.c keys.c signals.c terminal.c
 
 OBJ= $(SRC:.c=.o)
 

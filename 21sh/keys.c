@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/25 12:37:35 by knage             #+#    #+#             */
-/*   Updated: 2016/07/28 15:48:32 by knage            ###   ########.fr       */
+/*   Updated: 2016/07/29 10:45:23 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,40 +46,43 @@ char    *ft_get_line()
     char    *ret;
     char    *str;
     char    buf[10];
-    int     cposition;
+    int     cur;
+    int     max;
+    int     pos;
 
-    cposition = 3;
+    cur = 3;
+    max = 3;
     ret = ft_strnew(1);
-    tputs(tgetstr("ve", NULL), 1, ft_putchar_i);
-    tputs(tgetstr("sc", NULL), 1, ft_putchar_i);
+    ft_bzero(buf, 4);
     while ((read(0, buf, 4)) && buf[0] != '\n')
     {
-        str = ret;
+        pos = max;
         if (buf[0] == 27 && buf[2] == 67)
         {
-            cposition += 1;
         }
         else if (buf[0] == 27 && buf[2] == 68)
         {
-            ft_putstr("\b\b\b\b");
-            if (cposition != 3)
-            {
-                tputs(tgetstr("ce", NULL), 1, ft_putchar_i);
-                tputs(tgetstr("le", NULL), 1, ft_putchar_i);
-                cposition -= 1;
-            }
-            else
-            {
-                ft_putstr("    ");
-                tputs(tgetstr("rc", NULL), 1, ft_putchar_i);
-            }
+            if (cur != 3)
+                cur--;
         }
         else
         {
+            str = ret;
             ret = ft_strjoin(str, buf);
             free(str);
-            cposition++;
+            cur++;
+            max++;
         }
+        ft_putstr("\33[2K\r");
+        ft_putstr("~> ");
+        ft_putstr(ret);
+        while (pos != cur)
+        {
+            tputs(tgetstr("le", NULL), 1, ft_putchar_i);
+            --pos;
+        }
+        ft_bzero(buf, 4);
+        
     }
     return (ret);
 }

@@ -21,7 +21,7 @@ void	change_term(t_env *env)
 {
     tgetent(NULL, getenv("TERM"));
     tcgetattr(0, &env->termios);
-    env->termios.c_lflag &= ~(ICANON);	
+    env->termios.c_lflag &= ~(ECHO | ICANON);
     env->termios.c_cc[VMIN] = 1;
 	env->termios.c_cc[VTIME] = 0;
 	tcsetattr(0, TCSANOW, &env->termios);
@@ -44,5 +44,4 @@ void	change_back(void)
     env->termios.c_lflag &= ~(ECHO | ICANON);
 	tcsetattr(0, TCSANOW, &env->termios);
     tputs(tgetstr("te", NULL), 1, ft_putchar_i);
-    tputs(tgetstr("ve", NULL), 1, ft_putchar_i);
 }

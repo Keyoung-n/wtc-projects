@@ -73,6 +73,7 @@ int				ft_isbuiltin(t_env *env, char *line);
 
 void			change_term(t_env *env);
 void			change_back();
+t_env           *get_env(void);
 char            *ft_get_line();
 int             ft_putchar_i(int c);
 #endif
