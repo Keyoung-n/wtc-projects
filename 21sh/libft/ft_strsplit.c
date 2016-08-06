@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/10 14:09:51 by kcowle            #+#    #+#             */
-/*   Updated: 2016/07/29 16:01:49 by kcowle           ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:54 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:42:06 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,9 @@ char			**ft_strsplit(char const *s, char c)
 	size_t	size;
 	int		i;
 	int		start;
-	int x;
 
-	x = 0;
-	if (!s || !(tab = (char **)malloc(sizeof(char **) * (ft_words(s, c) + 2))))
-	{
-		while (x <= (int)ft_words(s, c) + 1)
-		{
-			free(tab[x]);
-			x++;
-		}
+	if (!s || !(tab = (char **)malloc(sizeof(char *) * (ft_words(s, c) + 1))))
 		return (0);
-	}
 	i = 0;
 	size = 0;
 	while (s[i])
@@ -67,6 +58,6 @@ char			**ft_strsplit(char const *s, char c)
 			tab[size++] = ft_strsub(s, start, i - start);
 		}
 	}
-	tab[size] = NULL;
+	tab[size] = 0;
 	return (tab);
 }

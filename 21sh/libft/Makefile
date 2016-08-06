@@ -3,26 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kcowle <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: knage <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/07/10 14:10:25 by kcowle            #+#    #+#              #
-#    Updated: 2016/07/21 12:45:17 by kcowle           ###   ########.fr        #
+#    Created: 2016/06/24 12:36:07 by knage             #+#    #+#              #
+#    Updated: 2016/08/06 14:49:50 by knage            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRC =    ft_strmcat.c		\
-		ft_c2da.c			\
-	    ft_strccut.c		\
-		ft_strbcut.c		\
-		ft_putnbr_base.c	\
-		ft_strnshift.c		\
-		ft_getfo.c			\
-		ft_itoa_base.c		\
-		ft_strrw.c			\
-	  ft_strfcut.c			\
-	 ft_memset.c			\
+SRC = ft_strmerge.c			\
+	  ft_memset.c			\
 	  ft_itoa.c				\
 	  ft_bzero.c			\
 	  ft_memcpy.c			\
@@ -78,19 +69,25 @@ SRC =    ft_strmcat.c		\
 	  ft_abs.c				\
 	  ft_lstadd.c			\
 	  ft_lstnew.c			\
-	  ft_strmerge.c			\
 	  get_next_line.c		\
+	  ft_isnbr.c			\
+	  ft_putnbr_base.c		\
+	  ft_put_pf.c			\
+	  ft_put_pf2.c			\
+	  ft_printf.c			\
+	  ft_putwstr.c			\
+	  ft_wcslen.c			\
+	  ft_putwstr_pf.c		\
+	  ft_printf_lib.c		\
+	  ft_put_pf3.c			\
+	  ft_atoil.c			\
+	  ft_findstr.c			\
+	  ft_strfcut.c			\
+	  ft_strnshift.c		\
+	  ft_strrw.c			\
 
 
-SRCO =  ft_strmcat.o		\
-ft_c2da.o			\
-	   ft_strccut.o			\
-	   ft_strbcut.o			\
-	   ft_strnshift.o		\
-	   ft_itoa_base.o		\
-	   ft_getfo.o			\
-	   ft_strrw.o            \
-	   ft_strfcut.o          \
+SRCO = ft_strmerge.o		\
 	   ft_memset.o			\
 	   ft_itoa.o			\
 	   ft_bzero.o			\
@@ -101,7 +98,6 @@ ft_c2da.o			\
 	   ft_memcmp.o			\
 	   ft_strlen.o			\
 	   ft_strdup.o			\
-	ft_putnbr_base.o			\
 	   ft_strcpy.o			\
 	   ft_strncpy.o			\
 	   ft_strcat.o			\
@@ -145,24 +141,38 @@ ft_c2da.o			\
 	   ft_strjoin.o			\
 	   ft_strsplit.o		\
 	   ft_iswhitespace.o	\
-	   ft_abs.o				\
+	   ft_abs.o			 	\
 	   ft_lstadd.o			\
 	   ft_lstnew.o			\
-	   ft_strmerge.o		\
 	   get_next_line.o		\
+	   ft_isnbr.o			\
+	   ft_putnbr_base.o     \
+	   ft_put_pf.o          \
+	   ft_put_pf2.o         \
+	   ft_printf.o          \
+	   ft_putwstr.o         \
+	   ft_wcslen.o          \
+	   ft_putwstr_pf.o      \
+	   ft_printf_lib.o      \
+	   ft_put_pf3.o         \
+	   ft_atoil.o           \
+	   ft_findstr.o          \
+	   ft_strfcut.o          \
+	   ft_strnshift.o        \
+	   ft_strrw.o            \
 
 CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME):
-	gcc -c $(CFLAGS) $(SRC)
-	ar ruv $(NAME) $(SRCO)
-	ranlib $(NAME)
+	@gcc -c $(CFLAGS) $(SRC)
+	@ar rc $(NAME) $(SRCO)
+	@ranlib $(NAME)
 clean:
-	rm -f $(SRCO)
+	@rm -f $(SRCO)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

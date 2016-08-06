@@ -6,15 +6,15 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/19 09:46:36 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/01 15:30:36 by smahomed         ###   ########.fr       */
+/*   Updated: 2016/08/04 13:37:50 by kcowle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 #define STDIN	0
 #define STDOUT	1
 
-void    ft_minishell2(t_env *env, t_main m)
+void	ft_minishell2(t_env *env, t_main m)
 {
 	int i;
 	int n;
@@ -22,32 +22,36 @@ void    ft_minishell2(t_env *env, t_main m)
 
 	if (m.line[0] != '\0')
 	{
-		ft_isbuiltin(env, &m, m.line);
-		m.comcount = 0;
-		m.line = ft_strtrim(m.line);
-		m.line2 = ft_strsplit(m.line, ' ');
-		while (m.line2[m.comcount] != NULL)
-			m.comcount++;
-		*env = get_dir(env, m.line2);
-		if (m.line2[0][0] == '/')
+		if (m.line[0] == '.' && m.line[1] == '/')
+			m.line = ft_strfcut(m.line, 2);
+		if (ft_isbuiltin(env, &m, m.line))
 		{
-			i = 0;
-			n = 1;
-			w = n;
-			while (m.line2[0][n] != '/')
+			m.comcount = 0;
+			m.line = ft_strtrim(m.line);
+			m.line2 = ft_strsplit(m.line, ' ');
+			while (m.line2[m.comcount] != NULL)
+				m.comcount++;
+			*env = get_dir(env, m.line2);
+			if (m.line2[0][0] == '/')
 			{
-				m.line2[0][i] = m.line2[0][n];
+				i = 0;
+				n = 1;
+				w = n;
+				while (m.line2[0][n] != '/')
+				{
+					m.line2[0][i] = m.line2[0][n];
+					while (m.line2[0][w] != '\0')
+						m.line2[0][n++] = m.line2[0][w++];
+					m.line2[0][n] = '\0';
+					n = 0;
+					w = 1;
+				}
 				while (m.line2[0][w] != '\0')
 					m.line2[0][n++] = m.line2[0][w++];
 				m.line2[0][n] = '\0';
-				n = 0;
-				w = 1;
 			}
-			while (m.line2[0][w] != '\0')
-				m.line2[0][n++] = m.line2[0][w++];
-			m.line2[0][n] = '\0';
+			*env = ft_excecute(m.line2, m.comcount, env);
 		}
-		*env = ft_excecute(m.line2, m.comcount, env);
 	}
 }
 
@@ -75,6 +79,7 @@ void	ft_excve(t_env *env, char **com, int i, t_main *w)
 	length = x;
 	env->father = fork();
 	*env = ft_keep_struct(*env, 0);
+	*w = ft_keep_main(*w, 0);
 	if (env->father >= 0)
 	{
 		signal(SIGINT, sinno);
@@ -97,6 +102,7 @@ void	ft_excve(t_env *env, char **com, int i, t_main *w)
 		length = x;
 		env->father = fork();
 		*env = ft_keep_struct(*env, 0);
+		*w = ft_keep_main(*w, 0);
 		if (env->father >= 0)
 		{
 			signal(SIGINT, sinno);
@@ -122,6 +128,7 @@ void	ft_excve(t_env *env, char **com, int i, t_main *w)
 	}
 	env->father = fork();
 	*env = ft_keep_struct(*env, 0);
+	*w = ft_keep_main(*w, 0);
 	if (env->father >= 0)
 	{
 		signal(SIGINT, sinno);

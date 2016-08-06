@@ -6,11 +6,11 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/28 08:15:51 by kcowle            #+#    #+#             */
-/*   Updated: 2016/07/29 15:59:05 by kcowle           ###   ########.fr       */
+/*   Updated: 2016/08/02 16:39:47 by kcowle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 
 void	ft_free2d(char **array)
 {
@@ -42,8 +42,8 @@ void	ft_free(t_env *env)
 	i = 0;
 	while (env->envirobk[i] != NULL)
 	{
-	        free(env->envirobk[i]);
-			i++;
+		free(env->envirobk[i]);
+		i++;
 	}
 	free(env->envirobk[i]);
 }

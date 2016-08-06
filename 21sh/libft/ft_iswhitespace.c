@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_iswhitespace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/10 14:09:51 by kcowle            #+#    #+#             */
-/*   Updated: 2016/07/10 14:09:59 by kcowle           ###   ########.fr       */
+/*   Created: 2016/06/24 12:41:52 by knage             #+#    #+#             */
+/*   Updated: 2016/06/24 12:46:27 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_iswhitespace(int c)
+int	ft_iswhitespace(int c)
 {
-	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' \
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
 			|| c == '\r');
 }
