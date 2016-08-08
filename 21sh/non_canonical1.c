@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/04 16:18:43 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/06 16:15:37 by knage            ###   ########.fr       */
+/*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
+/*   Updated: 2016/08/08 14:32:20 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "twentyonesh.h"
 
-void	ft_select5(t_main *e, char **line, char b[4])
+void	ft_select5(t_main *e, char b[4])
 {
 	if (b[0] == -30 && b[1] == -119 && b[2] == -92)
 	{
@@ -37,7 +37,7 @@ void	ft_select5(t_main *e, char **line, char b[4])
 		e->cursor += (e->cursor < e->a[e->y].x + 1);
 }
 
-int		ft_select4(t_main *e, char **line, char b[4])
+int		ft_select4(t_main *e, char b[4])
 {
 	if (b[0] == 27 && b[1] == 91 && b[2] == 51 && b[3] == 126)
 	{
@@ -54,12 +54,16 @@ int		ft_select4(t_main *e, char **line, char b[4])
 	else if (b[0] == 27 && b[1] == 91 && b[2] == 53
 			&& b[3] == 126 && e->a[e->y].x > -1)
 		e->cursor = 0;
+	else if (b[0] == -30 && b[1] == -120 && b[2] == -111 && !b[3])
+		ft_ctrlup(e);
+	else if (b[0] == -61 && b[1] == -97 && !b[2] && !b[3])
+		ft_ctrldown(e);
 	else
-		ft_select5(e, line, b);
+		ft_select5(e, b);
 	return (1);
 }
 
-int		ft_select3(t_main *e, char **line, char b[4])
+int		ft_select3(t_main *e, char b[4])
 {
 	if (b[0] == 27 && b[1] == 91 && b[2] == 54 && b[3] == 126)
 		e->cursor = e->a[e->y].x + 1;
@@ -82,17 +86,16 @@ int		ft_select3(t_main *e, char **line, char b[4])
 					+ (e->cursor + 2) * (e->cursor < e->a[e->y].x);
 	}
 	else
-		ft_select4(e, line, b);
+		ft_select4(e, b);
 	return (1);
 }
 
-int		ft_select2(t_main *e, char **line, char b[4])
+int		ft_select2(t_main *e, char b[4])
 {
 	if (b[0] == 27 && b[1] == 91 && b[2] == 65 && !b[3] && e->y_cursor > 0)
 	{
 		ft_strclr(e->a[e->y].line);
 		ft_strcat(e->a[e->y].line, e->a[--e->y_cursor].line);
-		//e->a[e->y].buff = e->a[e->y_cursor].buff;
 		e->a[e->y].line[e->a[e->y_cursor].x + 1] = '\0';
 		e->a[e->y].x = ft_strlen(e->a[e->y].line) - 1;
 		e->cursor = e->a[e->y].x + 1;
@@ -109,20 +112,19 @@ int		ft_select2(t_main *e, char **line, char b[4])
 		e->cursor = e->a[e->y].x + 1;
 	}
 	else
-		ft_select3(e, line, b);
+		ft_select3(e, b);
 	return (1);
 }
 
 int		ft_select(t_main *e, char **line)
 {
-	char			b[4];
-	int				tmp;
+	char	b[4];
+	int		tmp;
 
-	ft_printstring(e);
-	ft_bzero(b, 4);
+	ft_bzero(b, 4 * ft_printstring(e));
 	read(0, b, 4);
-//	ft_printf("%i, %i, %i\n", b[0], b[1], b[2]);
-	is_quote(e, b);
+	tmp = 0;
+	ft_printf("%i, %i, %i\n", b[0], b[1], b[2]);
 	if (ft_isprint(b[0]) && e->a[e->y].x >= e->a[e->y].buff)
 		ft_selectremalloc(e);
 	else if (b[0] == 127 && e->a[e->y].x > -1
@@ -134,15 +136,12 @@ int		ft_select(t_main *e, char **line)
 	else if (b[0] == 27 && b[1] == 91 && b[2] == 68
 			&& b[3] == 0 && (e->start = -2))
 		e->cursor -= (e->cursor > 0);
-	else if (b[0] == 10 && !b[1])
+	else if (b[0] == 10 && !b[1] && ft_printstring(e + 0 * (e->cursor = -2)))
 	{
-        ft_printstring(e +  0 * (e->cursor = -2));
 		e->a[e->y].line = ft_strtrim(e->a[e->y].line);
 		e->a[e->y].x = ft_strlen(e->a[e->y].line) - 1;
 		return (0 * (!(*line = ft_strdup(e->a[e->y].line)) +
-					ft_init(e, 0) + write(1, "\n", 1)));
+					ft_init(e) + write(1, "\n", 1)));
 	}
-	else
-		ft_select2(e, line, b);
-	return (1);
+	return (ft_select2(e, b));
 }

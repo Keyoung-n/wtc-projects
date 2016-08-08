@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/04 16:18:33 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/06 13:25:53 by knage            ###   ########.fr       */
+/*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
+/*   Updated: 2016/08/08 12:29:49 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "twentyonesh.h"
 
 void	select_c(char c)
 {
@@ -21,15 +21,18 @@ void	select_c(char c)
 
 int		ft_printstring(t_main *e)
 {
-	int		x;
+	struct winsize	win;
+	int				x;
+	int				t[3];
 
-	x = -1;
-	if (e->lineprom == 0)
-		ft_putstr("\33[2K\r<<^>>: ");
-	if (e->lineprom == 1)
-		ft_putstr("\33[2k\r");
-	while (++x <= e->a[e->y].x)
+	ioctl(0 * ((t[0] = win.ws_col) || 1), TIOCGWINSZ, &win);
+	x = -1 + 0 * ft_linextention(e);
+	t[1] = 7;
+	e->lineprom = 0;
+	while (++x <= e->a[e->y].x && ((t[1] += 1) || 1))
 	{
+		e->lineprom += (t[1] == t[0]);
+		t[1] = t[1] * (t[1] < t[0]);
 		if (e->a[e->y].line[x] && ft_isprint(e->a[e->y].line[x]))
 		{
 			if (e->start != -2 && x > e->start && x < e->end)
@@ -45,7 +48,7 @@ int		ft_printstring(t_main *e)
 	return (1 + 0 * (e->cursor == e->a[e->y].x + 1 && ft_cursor(' ')));
 }
 
-int		ft_init(t_main *e, char *node)
+int		ft_init(t_main *e)
 {
 	t_21line_l	*tmp;
 	int			x;
@@ -76,19 +79,20 @@ int		ft_init(t_main *e, char *node)
 
 int		ft_selectinit(t_main *env)
 {
-    static int  n;
-    
-    n += (n < 2);
-    if (n == 1)
-    {
-        tcgetattr(0 * tgetent(NULL, getenv("TERM")), &env->term);
-        tputs(tgetstr("ti", NULL), 1, ft_ft_putchar);
-        tputs(tgetstr("ho", NULL), 1, ft_ft_putchar);
-    }
-    env->term.c_lflag &= ~(ECHO | ICANON);
+	static int	n;
+
+	n += (n < 2);
+	if (n == 1)
+	{
+		tcgetattr(0 * tgetent(NULL, getenv("TERM")), &env->term);
+		tputs(tgetstr("ti", NULL), 1, ft_ft_putchar);
+		tputs(tgetstr("ho", NULL), 1, ft_ft_putchar);
+	}
+	env->term.c_lflag &= ~(ECHO | ICANON);
 	env->term.c_cc[VMIN] = 1;
 	env->term.c_cc[VTIME] = 0;
 	tcsetattr(0, 0, &env->term);
+	env->lineprom = 0;
 	tputs(tgetstr("vi", NULL), 1, ft_ft_putchar);
 	return (1);
 }

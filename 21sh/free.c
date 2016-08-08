@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/28 08:15:51 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/02 16:39:47 by kcowle           ###   ########.fr       */
+/*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
+/*   Updated: 2016/08/07 15:59:58 by kcowle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "twentyonesh.h"
 
 void	ft_free2d(char **array)
 {

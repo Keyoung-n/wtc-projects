@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/10 14:07:10 by kcowle            #+#    #+#             */
-/*   Updated: 2016/07/10 14:07:17 by kcowle           ###   ########.fr       */
+/*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
+/*   Updated: 2016/08/07 15:59:58 by kcowle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "twentyonesh.h"
 
 void	init_echo(char *line, t_echo *ec)
 {

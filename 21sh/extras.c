@@ -5,51 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/10 14:07:10 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/04 14:31:13 by kcowle           ###   ########.fr       */
+/*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
+/*   Updated: 2016/08/07 15:59:58 by kcowle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "21sh.h"
-
-int		ft_isbuiltin(t_env *env, t_main *w, char *line)
-{
-	char	**line2;
-	int		i;
-
-	i = 0;
-	line2 = NULL;
-	line2 = ft_strsplit(line, ' ');
-	line2[0] = ft_strtrim(line2[0]);
-	if (ft_findstr(">&", line) == 1 && (i = 1))
-		ft_links(line, env);
-	if (ft_strcmp(line2[0], "echo") == 0 && (i = 1))
-	{
-		line = ft_strfcut(line, 5);
-		ft_echo(line);
-	}
-	else if (ft_strncmp(line, "cd", 2) == 0 && (i = 1))
-		ft_cd(line);
-    else if (ft_strcmp(line, "clear") == 0 && (i = 1))
-        tputs(tgetstr("cl", NULL), 1, ft_ft_putchar);
-	else if (ft_strncmp(line, "unsetenv", 7) == 0 && (i = 1))
-		env = ft_unsetenv(env);
-	else if (ft_strncmp(line, "env", 2) == 0 && (i = 1))
-		print_env(env);
-	else if (ft_strncmp(line, "setenv", 5) == 0 && (i = 1))
-	{
-		line = ft_strtrim(line);
-		line2 = ft_strsplit(line, ' ');
-		env = set_env(line2, env);
-	}
-	else if (ft_isdigit(line[0]) == 1 && line[1] == '>'
-			&& line[2] == '&' && (i = 1))
-		ft_fdfuncs(line);
-	ft_free2d(line2);
-	if (i == 1)
-		return (0);
-	return (1);
-}
+#include "twentyonesh.h"
 
 t_env	ft_excecute(char **line2, int comcount, t_env *env)
 {
@@ -130,29 +91,13 @@ void	ft_cd(char *line)
 	free(tmp);
 }
 
-t_env	get_dir(t_env *env, char **line)
+int		get_dir2(t_env *env, char **line2, char **line)
 {
 	struct dirent	*pdirent;
 	DIR				*pdir;
-	char			*linel;
-	char			**line2;
 	int				i;
-	char			**tdir;
 
-	linel = get_path(env);
-	ft_strcpy(linel, ft_strfcut(linel, 5));
-	line2 = ft_strsplit(linel, ':');
-	free(linel);
-	i = -1;
-	if (line[0][0] == '/')
-	{
-		tdir = ft_strsplit(line[0], '/');
-		env->path = (char *)malloc(sizeof(char *) * ft_strlen(tdir[0]));
-		env->path[0] = '/';
-		ft_strcat(env->path, tdir[0]);
-		ft_strcat(env->path, "/");
-		return (*env);
-	}
+	i = 0;
 	while (line2[++i] != NULL && ft_strcpy(line2[i], ft_strcat(line2[i], "/")))
 	{
 		pdir = opendir(line2[i]);
@@ -162,9 +107,33 @@ t_env	get_dir(t_env *env, char **line)
 				env->path = (char *)malloc(sizeof(char *) \
 						* ft_strlen(line2[i]) + 1);
 				ft_strcpy(env->path, line2[i]);
-				return (*env);
+				return (1);
 			}
 	}
+	return (0);
+}
+
+t_env	get_dir(t_env *env, char **line)
+{
+	char			*linel;
+	char			**line2;
+	char			**tdir;
+
+	linel = get_path(env);
+	ft_strcpy(linel, ft_strfcut(linel, 5));
+	line2 = ft_strsplit(linel, ':');
+	free(linel);
+	if (line[0][0] == '/')
+	{
+		tdir = ft_strsplit(line[0], '/');
+		env->path = (char *)malloc(sizeof(char *) * ft_strlen(tdir[0]));
+		env->path[0] = '/';
+		ft_strcat(env->path, tdir[0]);
+		ft_strcat(env->path, "/");
+		return (*env);
+	}
+	if (get_dir2(env, line2, line))
+		return (*env);
 	ft_putstr(line[0]);
 	ft_putstr(": command not found.\n");
 	return (*env);

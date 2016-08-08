@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/04 16:18:50 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/04 16:18:58 by kcowle           ###   ########.fr       */
+/*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
+/*   Updated: 2016/08/07 15:59:58 by kcowle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "twentyonesh.h"
 
 int		ft_ft_putchar(int c)
 {
 	return (write(2, &c, 1));
 }
 
-int     ft_cursor(char c)
+int		ft_cursor(char c)
 {
 	tputs(tgetstr("so", 0), 1, ft_ft_putchar);
 	ft_putstr("\033[1;36m");
@@ -27,9 +27,9 @@ int     ft_cursor(char c)
 	return (0);
 }
 
-int     ft_selectdelete(t_main *e)
+int		ft_selectdelete(t_main *e)
 {
-	int     x;
+	int		x;
 
 	x = e->cursor - 1;
 	while (++x < e->a[e->y].x)
@@ -38,9 +38,9 @@ int     ft_selectdelete(t_main *e)
 	return (1);
 }
 
-int     ft_selectbackspace(t_main *e)
+int		ft_selectbackspace(t_main *e)
 {
-	int     x;
+	int		x;
 
 	x = --e->cursor - 1;
 	while (++x < e->a[e->y].x)
@@ -49,12 +49,10 @@ int     ft_selectbackspace(t_main *e)
 	return (1);
 }
 
-int     ft_selectinsert(t_main *e, char c)
+int		ft_selectinsert(t_main *e, char c)
 {
-	int     x;
+	int		x;
 
-	//    if (c == ' ')
-	//        e->a[e->y].line = ft_strtrim(e->a[e->y].line);
 	x = ++e->a[e->y].x;
 	while (--x >= e->cursor)
 		e->a[e->y].line[x + 1] = e->a[e->y].line[x];
