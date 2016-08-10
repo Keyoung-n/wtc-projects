@@ -6,7 +6,7 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/08 14:32:20 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/10 16:34:16 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ int		ft_select(t_main *e, char **line)
 	ft_bzero(b, 4 * ft_printstring(e));
 	read(0, b, 4);
 	tmp = 0;
-	ft_printf("%i, %i, %i\n", b[0], b[1], b[2]);
 	if (ft_isprint(b[0]) && e->a[e->y].x >= e->a[e->y].buff)
 		ft_selectremalloc(e);
 	else if (b[0] == 127 && e->a[e->y].x > -1

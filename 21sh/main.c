@@ -6,7 +6,7 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/08 13:45:58 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/10 16:57:18 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	print_env(t_env *env)
 
 t_env	*set_env(char **line2, t_env *env)
 {
-	int i;
+	int		i;
+	char	**enirok;
 
 	i = 1;
 	while (line2[1] && env->enviro[i] != NULL)
@@ -41,9 +42,15 @@ t_env	*set_env(char **line2, t_env *env)
 		}
 		i++;
 	}
-	ft_putstr("env variable \"");
-	ft_putstr(line2[1]);
-	ft_putstr("\" not found.\n");
+	enirok = (char**)malloc(sizeof(char**) * i + 2);
+	i = 0;
+	while (line2[1] && env->enviro[i] != NULL)
+	{
+		enirok[i] = ft_strnew(ft_strlen(enirok[i]) + 1);
+		ft_strcpy(enirok[i], env->enviro[i]);
+		i++;
+	}
+
 	return (env);
 }
 
@@ -84,6 +91,7 @@ int		main(void)
 
 	n = 0;
 	i = 0;
+	env.prev_pwd = NULL;
 	env.cont = 0;
 	while (environ[i] != NULL)
 		i++;

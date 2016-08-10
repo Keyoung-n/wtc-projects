@@ -6,7 +6,7 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/08 13:47:16 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/10 16:32:50 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		ft_builtin(t_env *env, char *line)
 		ft_echo(line);
 	}
 	else if (ft_strncmp(line, "cd", 2) == 0 && (i = 1))
-		ft_cd(line);
+		ft_cd(line, env);
 	else if (ft_strcmp(line, "clear") == 0 && (i = 1))
 		tputs(tgetstr("cl", NULL), 1, ft_ft_putchar);
 	else if (ft_strncmp(line, "unsetenv", 7) == 0 && (i = 1))

@@ -6,7 +6,7 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/08 13:47:30 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/10 16:33:29 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct		s_env
 	int				cont;
 	int				i;
 	char			**history;
-	int				lol;
+	char			*prev_pwd;
 }					t_env;
 
 typedef struct		s_echo
@@ -130,7 +130,7 @@ t_env				get_dir(t_env *env, char **line);
 t_env				ft_excecute(char **line2, int comcount, t_env *env);
 t_env				*ft_keep_struct(t_env env, int i);
 t_main				*ft_keep_main(t_main w, int i);
-void				ft_cd(char *line);
+void				ft_cd(char *line, t_env *env);
 void				ft_printoct(char *line, int *i);
 void				ft_handle2(char *line, t_echo *ec);
 void				ft_minishell(t_env *env, t_main *m);

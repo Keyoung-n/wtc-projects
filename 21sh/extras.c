@@ -6,7 +6,7 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/07 15:59:58 by kcowle           ###   ########.fr       */
+/*   Updated: 2016/08/10 16:43:59 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,18 @@ char	*gethome(void)
 	return (home);
 }
 
-void	ft_cd(char *line)
+void	ft_cd(char *line, t_env *env)
 {
 	int			i;
+	int			change;
 	char		*tmp;
 	char		*home;
+	char		pwd[2048];
 
 	i = 0;
+	change = 0;
 	home = gethome();
+	getcwd(pwd, 2048);
 	tmp = (char *)malloc(sizeof(char *) * (ft_strlen(line) + 1));
 	ft_strcpy(tmp, line);
 	tmp = ft_strrw(tmp);
@@ -82,11 +86,22 @@ void	ft_cd(char *line)
 			tmp = ft_strnshift(tmp, 1);
 		home = ft_strjoin(home, "/");
 		home = ft_strjoin(home, tmp);
-		if (chdir(home) == -1)
+		change = 1;
+		if (chdir(home) == -1 && (change = 0))
 			ft_putstr("No such file or directory.\n");
 	}
-	else if (chdir(tmp) == -1)
+	else if (tmp[0] == 0)
+		chdir(home);
+	else if (tmp[0] == '-')
+		chdir(env->prev_pwd);
+	else if ((change = 1) && chdir(tmp) == -1 && (change = 0))
 		ft_putstr("No such file or directory.\n");
+	if (change == 1)
+	{
+		free(env->prev_pwd);
+		env->prev_pwd = (char*)malloc(sizeof(char*) * ft_strlen(pwd));
+		ft_strcpy(env->prev_pwd, pwd);
+	}
 	free(home);
 	free(tmp);
 }
