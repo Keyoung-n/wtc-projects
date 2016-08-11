@@ -6,7 +6,7 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/10 16:57:18 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/11 14:17:23 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,42 +28,74 @@ void	print_env(t_env *env)
 t_env	*set_env(char **line2, t_env *env)
 {
 	int		i;
-	char	**enirok;
+	char	*temp;
+	char	**envirok;
 
 	i = 1;
 	while (line2[1] && env->enviro[i] != NULL)
 	{
 		if (ft_strncmp(line2[1], env->enviro[i], 4) == 0)
 		{
-			env->enviro[i] = (char *)malloc(sizeof(char *) *\
-					ft_strlen(line2[1]));
-			ft_strcpy(env->enviro[i], line2[1]);
+			free(env->enviro[i]);
+			temp = ft_strjoin(line2[1], "=");
+			env->enviro[i] = ft_strjoin(temp, line2[2]);
+			free(temp);
 			return (env);
 		}
 		i++;
 	}
-	enirok = (char**)malloc(sizeof(char**) * i + 2);
+	envirok = (char**)malloc(sizeof(char**) * i + 2);
 	i = 0;
 	while (line2[1] && env->enviro[i] != NULL)
 	{
-		enirok[i] = ft_strnew(ft_strlen(enirok[i]) + 1);
-		ft_strcpy(enirok[i], env->enviro[i]);
+		envirok[i] = ft_strnew(ft_strlen(env->enviro[i]) + 1);
+		ft_strcpy(envirok[i], env->enviro[i]);
 		i++;
 	}
-
+	if (line2[1][ft_strlen(line2[1])] == '=')
+		envirok[i] = ft_strdup(line2[1]);
+	else
+	{
+		envirok[i] = ft_strnew(ft_strlen(line2[1]) + 2);
+		ft_strcpy(envirok[i], line2[1]);
+		envirok[i][ft_strlen(line2[1]) + 1] = '=';
+//		envirok[i][ft_strlen(line2[1]) + 2] = '\0';
+	}
+	i++;
+	envirok[i] = 0;
+	ft_free2d(env->enviro);
+	env->enviro = envirok;
 	return (env);
 }
 
-t_env	*ft_unsetenv(t_env *env)
+t_env	*ft_unsetenv(t_env *env, char *line)
 {
-	int i;
+	int 	i;
+	int 	j;
+	int		size;
+	char	**temp;
 
 	i = 0;
-	while (env->envirobk[i] != NULL)
+	j = 0;
+	size = ft_strlen(line);
+	while (env->enviro[i])
+		i++;
+	temp = (char**)malloc(sizeof(char**) * i + 1);
+	i = 0;
+	while (env->enviro[i] != NULL)
 	{
-		ft_strcpy(env->enviro[i], env->envirobk[i]);
+		if (ft_strncmp(env->enviro[i], line, size) == 0)
+				;
+		else
+		{
+			temp[j] = ft_strdup(env->enviro[i]);
+			j++;
+		}
 		i++;
 	}
+	ft_free2d(env->enviro);
+	temp[j] = 0;
+	env->enviro = temp;
 	return (env);
 }
 

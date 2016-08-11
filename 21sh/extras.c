@@ -6,7 +6,7 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/10 16:43:59 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/11 09:03:49 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_cd(char *line, t_env *env)
 	char		pwd[2048];
 
 	i = 0;
-	change = 0;
+	change = 1;
 	home = gethome();
 	getcwd(pwd, 2048);
 	tmp = (char *)malloc(sizeof(char *) * (ft_strlen(line) + 1));
@@ -86,16 +86,21 @@ void	ft_cd(char *line, t_env *env)
 			tmp = ft_strnshift(tmp, 1);
 		home = ft_strjoin(home, "/");
 		home = ft_strjoin(home, tmp);
-		change = 1;
-		if (chdir(home) == -1 && (change = 0))
+		if (chdir(home) == -1)
+		{
 			ft_putstr("No such file or directory.\n");
+			change = 0;
+		}
 	}
 	else if (tmp[0] == 0)
 		chdir(home);
 	else if (tmp[0] == '-')
 		chdir(env->prev_pwd);
-	else if ((change = 1) && chdir(tmp) == -1 && (change = 0))
+	else if (chdir(tmp) == -1)
+	{
 		ft_putstr("No such file or directory.\n");
+		change = 0;
+	}
 	if (change == 1)
 	{
 		free(env->prev_pwd);

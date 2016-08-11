@@ -6,7 +6,7 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/08 13:49:30 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/11 16:58:13 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	minishell_support2(t_main *m)
 	int	n;
 	int	w;
 
+	ft_printf("support2\n");
 	if (m->line2[0][0] == '/')
 	{
 		i = 0;
@@ -36,10 +37,12 @@ void	minishell_support2(t_main *m)
 			m->line2[0][n++] = m->line2[0][w++];
 		m->line2[0][n] = '\0';
 	}
+	ft_printf("2after\n");
 }
 
 void	minishell_support1(t_main *m, t_env *env)
 {
+	ft_printf("support1\n");
 	if (env->father == 0)
 	{
 		if (ft_strcmp(m->line, "exit") == 0)
@@ -78,4 +81,5 @@ void	ft_minishell(t_env *env, t_main *m)
 			}
 		}
 	}
+	ft_printf("\n\nafter\n\n");
 }

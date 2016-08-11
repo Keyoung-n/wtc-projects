@@ -6,22 +6,25 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/07 15:59:58 by kcowle           ###   ########.fr       */
+/*   Updated: 2016/08/11 10:30:09 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twentyonesh.h"
 
-void	ft_getenv(char *text)
+void	ft_getenv(t_env *env, char *text)
 {
-	extern	char	**environ;
 	int				i;
 
 	i = 0;
-	while (environ[i] != NULL)
+	text++;
+	while (env->enviro[i] != NULL)
 	{
-		if (ft_strncmp(text, environ[i], ft_strlen(text) - 1) == 0)
-			ft_putstr(environ[i]);
+		if (ft_strncmp(text, env->enviro[i], ft_strlen(text)) == 0)
+		{
+			ft_putstr(env->enviro[i]);
+			ft_putstr("\n");
+		}
 		i++;
 	}
 }
@@ -41,7 +44,7 @@ int		ft_pow(int n, int p)
 	return (result);
 }
 
-void	ft_echo(char *line)
+void	ft_echo(t_env *env, char *line)
 {
 	t_echo	ec;
 
@@ -55,7 +58,7 @@ void	ft_echo(char *line)
 	}
 	if (line[0] == '$')
 	{
-		ft_getenv(line + 1);
+		ft_getenv(env, line);
 		ec.state = 0;
 	}
 	ec.i = 0;

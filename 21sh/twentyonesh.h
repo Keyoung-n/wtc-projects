@@ -6,7 +6,7 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/10 16:33:29 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/11 10:29:33 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int					ft_isbuiltin(t_env *env, char *line);
 char				*get_path(t_env *env);
 char				**ft_insert(t_env *env, char *com);
 t_env				*set_env(char **line2, t_env *env);
-t_env				*ft_unsetenv(t_env *env);
+t_env				*ft_unsetenv(t_env *env, char *line);
 t_env				get_dir(t_env *env, char **line);
 t_env				ft_excecute(char **line2, int comcount, t_env *env);
 t_env				*ft_keep_struct(t_env env, int i);
@@ -146,7 +146,7 @@ void				ft_free2d(char **array);
 void				is_quote(t_main *main, char *str);
 void				ft_fdfuncs(char *line);
 void				ft_doublecoms(t_env *env, t_main *w);
-void				ft_echo(char *line);
+void				ft_echo(t_env *env, char *line);
 void				ft_exit(t_env *env, t_main *w);
 void				ft_links(char *line);
 void				ft_minishell2(t_env *env, t_main m);

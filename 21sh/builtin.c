@@ -6,7 +6,7 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/10 16:32:50 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/11 14:18:55 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,17 @@ int		ft_builtin(t_env *env, char *line)
 	if (ft_strcmp(line2[0], "echo") == 0 && (i = 1))
 	{
 		line = ft_strfcut(line, 5);
-		ft_echo(line);
+		ft_echo(env, line);
 	}
 	else if (ft_strncmp(line, "cd", 2) == 0 && (i = 1))
 		ft_cd(line, env);
 	else if (ft_strcmp(line, "clear") == 0 && (i = 1))
 		tputs(tgetstr("cl", NULL), 1, ft_ft_putchar);
 	else if (ft_strncmp(line, "unsetenv", 7) == 0 && (i = 1))
-		env = ft_unsetenv(env);
+	{
+		line2 = ft_strsplit(line, ' ');
+		env = ft_unsetenv(env, line2[1]);
+	}
 	else if (i == 0)
 		i = ft_builtin2(env, line);
 	return (i);
@@ -66,7 +69,7 @@ int		ft_isbuiltin(t_env *env, char *line)
 	int		i;
 
 	i = 0;
-	if (ft_findstr(">&", line) == 1 && (i = 1))
+if (ft_findstr(">&", line) == 1 && (i = 1))
 		ft_links(line);
 	i = ft_builtin(env, line);
 	if (i == 1)
