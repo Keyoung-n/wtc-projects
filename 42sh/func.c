@@ -66,6 +66,7 @@ void	ft_echo(t_env *env, char *line)
 	}
 	ec.i = 0;
 	ft_handle3(&ec, line);
+	ft_free2d(ec.line2);
 }
 
 char	*get_path(t_env *env)

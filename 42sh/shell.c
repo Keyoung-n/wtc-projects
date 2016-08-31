@@ -16,8 +16,6 @@ void	minishell_support1(t_main *m, t_env *env)
 {
 	if (env->father == 0)
 	{
-		if (ft_strcmp(m->line, "exit") == 0)
-			ft_exit(env, m);
 		m->line = ft_strtrim(m->line);
 		m->line2 = ft_strsplit(m->line, ' ');
 		while (m->line2[m->comcount] != NULL)
@@ -31,6 +29,11 @@ void	minishell_support1(t_main *m, t_env *env)
 		wait(NULL);
 		wait(NULL);
 		env->father = 0;
+	}
+	if (m->line != NULL)
+	{
+		free(m->line);
+		m->line = NULL;
 	}
 }
 

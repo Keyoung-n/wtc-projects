@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 07:30:39 by knage             #+#    #+#             */
-/*   Updated: 2016/08/12 07:30:51 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/23 08:36:59 by kcowle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int		ft_ft_putchar(int c)
 int		ft_cursor(char c)
 {
 	tputs(tgetstr("so", 0), 1, ft_ft_putchar);
-	ft_putstr("\033[1;36m");
+//	ft_putstr("\033[1;36m");
     if (c == '\t')
         write(1, " ", 1);
     else
         ft_putchar(c);
-	ft_putstr("\033[00m");
+//	ft_putstr("\033[00m");
 	tputs(tgetstr("se", 0), 1, ft_ft_putchar);
     if (c == '\t')
         write(1, "   ", 3);

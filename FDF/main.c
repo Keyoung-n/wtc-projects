@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 08:16:42 by knage             #+#    #+#             */
-/*   Updated: 2016/06/05 11:37:00 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/31 06:58:54 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ t_map	*getmapsize(char **line, int fd, t_map *curr, t_env *env)
 
 	temp.y = 0;
 	temp.map = NULL;
-	while (get_next_line(fd, line) == 1 && temp.x != -1)
-	{
+	get_next_line(fd, line);
+//	while (get_next_line(fd, line) == 1 && temp.x != -1)
+//	{
 		line = ft_strsplit(*line, ' ');
 		support(&temp, line);
 		while (line[temp.x] != '\0' && temp.x != -1)
@@ -69,7 +70,7 @@ t_map	*getmapsize(char **line, int fd, t_map *curr, t_env *env)
 			temp.x++;
 		}
 		temp.y++;
-	}
+//	}
 	curr = temp.map;
 	savepoints(temp.x, temp.y, env);
 	return (reverse(curr));

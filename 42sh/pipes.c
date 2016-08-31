@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 07:30:39 by knage             #+#    #+#             */
-/*   Updated: 2016/08/22 15:58:50 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/22 15:54:23 by kcowle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,5 @@ void	ft_pipes(t_env *env, char **coms, int i, t_main *w)
 
 	com = ft_strsplit(coms[i], '|');
 	ft_excve(env, com, count_char(coms[i], '|'), w);
+	ft_free2d(com);
 }

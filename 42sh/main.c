@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 07:30:39 by knage             #+#    #+#             */
-/*   Updated: 2016/08/22 14:05:18 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/23 13:16:08 by kcowle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,9 @@ int		main(void)
 	env->cont = 0;
 	env->father = 0;
 	env->vars = 0;
-	w->t.list = NULL;
-	w->t.pos = NULL;
+	w->pro = (char *)malloc(sizeof(char *) * ft_strlen("<<^>>: "));
+	ft_strcpy(w->pro, "<<^>>: ");
+	w->ret = '\n';
 	while (environ[i] != NULL)
 		i++;
 	env->enviro = (char **)malloc(sizeof(char **) * i + 1);

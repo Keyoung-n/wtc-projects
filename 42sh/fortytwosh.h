@@ -6,7 +6,7 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:59:48 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/22 14:06:30 by knage            ###   ########.fr       */
+/*   Updated: 2016/08/26 10:51:13 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,6 @@ typedef struct		s_echo
 	int				i;
 }					t_echo;
 
-typedef struct      s_tablst
-{
-    char            *name;
-    struct s_tablst *next;
-}                   t_tablst;
-
-typedef struct      s_tab
-{
-    t_tablst        *list;
-	t_tablst		*pos;
-    char            *dir;
-    char            *criteria;
-    
-    char            is_tab;
-    char            ctrl_v;
-}                   t_tab;
-
 typedef struct		s_main
 {
 	struct termios	term;
@@ -110,13 +93,30 @@ typedef struct		s_main
 	int				lineprom;
 	int				quote;
 	int				open;
-    t_tab           t;
+	char			is_tab;
+	char			ctrl_v;
+	char			*pro;
+	char			ret;
 }					t_main;
 
-int                 tab_getdir(t_main *e);
-int                 is_tab_printed(t_main *e);
-int                 is_tab_auto_fill(t_main *e);
-//
+typedef struct  s_keyhook
+{
+    char            *line;
+    int				buffsize;
+    int				cursor;
+    int				buff;
+    int				x;
+    int				start;
+    int				end;
+	char			*pro;
+    char			*clip;
+    char			ctrl_v;
+    int				lineprom;
+	char			ret;
+}               t_keyhook;
+
+void				ft_freet_main(t_main *w);
+void				ft_free(t_env *env);
 int                 ft_tab(t_main *e);
 int					ft_selectremalloc(t_main *e);
 int					ft_cursor(char c);
@@ -133,10 +133,11 @@ int					oct_dec(int n);
 int					ft_handle1(char *line, char **line2, int *e, int *o);
 int					ft_pow(int i, int x);
 int					ft_linextention(t_main *e);
-int					ft_ctrlup(t_main *e);
-int					ft_ctrldown(t_main *e);
+int		ft_ctrlup(int cursor, int x);
+int		ft_ctrldown(int cursor, int x);
 int					ft_isbuiltin(t_env *env, t_main *w);
 char				*get_path(t_env *env);
+char				*get_str(char *promt, char ret);
 char				*ft_getvar(t_env *env, char *text);
 char                *ft_getenv(t_env *env, char *text);
 char				**ft_insert(t_env *env, char *com);
@@ -148,7 +149,7 @@ t_env				get_dir(t_env *env, char **line);
 t_env				ft_excecute(char **line2, int comcount, t_env *env);
 t_env				*ft_keep_struct();
 t_main				*ft_keep_main();
-void               	variable_check(t_main *env);
+void    variable_check(char *line);
 void				ft_cd(char *line, t_env *env);
 void				ft_printoct(char *line, int *i);
 void				ft_handle2(char *line, t_echo *ec);
@@ -178,4 +179,15 @@ void				exclamation_history(t_env *env, t_main *w);
 void				ft_if_else(t_env *env, t_main *w);
 void				ft_pp(t_env *env, t_main *w);
 void				ft_aa(t_env *env, t_main *w);
+void	select_c(char c);
+
+void    remove_last_char(t_keyhook *env);
+void		remove_char(t_keyhook *env);
+void		insert_char(t_keyhook *env, char c);
+void	malloc_buff(t_keyhook *env);
+void	printline(t_keyhook *env);
+void	cut(t_keyhook *env);
+void	paste(t_keyhook *env);
+void	copy(t_keyhook *env);
+t_keyhook *key_hook_init(t_keyhook *env);
 #endif

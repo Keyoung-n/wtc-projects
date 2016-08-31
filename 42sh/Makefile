@@ -6,16 +6,17 @@
 #    By: kcowle <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/07 15:59:15 by kcowle            #+#    #+#              #
-#    Updated: 2016/08/19 14:22:18 by knage            ###   ########.fr        #
+#    Updated: 2016/08/30 07:24:07 by knage            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = 42sh
 
-CC = clang 
+CC = clang
 
 SRC =	file_arf.c			\
 		cut_copy_paste.c	\
+		cut_copy_paste_key.c\
 		non_canonical1.c	\
 	  	non_canonical2.c	\
 		non_canonical3.c    \
@@ -39,6 +40,8 @@ SRC =	file_arf.c			\
 		redirection.c		\
 		vars.c				\
 		variables.c			\
+		key_hook.c			\
+		get_str.c			\
 		libft/libft.a		\
 
 all: $(NAME)

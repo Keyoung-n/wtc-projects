@@ -6,7 +6,7 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 10:25:08 by kcowle            #+#    #+#             */
-/*   Updated: 2016/08/12 10:25:13 by kcowle           ###   ########.fr       */
+/*   Updated: 2016/08/23 16:07:08 by kcowle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen2D(char **str)
 	size_t i;
 
 	i = 0;
-	if (str[0] != NULL)
+	if (str != NULL)
 	{
 		while (str[i] != NULL)
 		{

@@ -56,6 +56,7 @@ char	*gethome(void)
 {
 	char		*home;
 	int			i;
+	char		*temp;
 	extern char	**environ;
 
 	i = 0;
@@ -64,9 +65,10 @@ char	*gethome(void)
 	{
 		if (ft_strncmp(environ[i], "HOME=", 5) == 0)
 		{
-			home = (char *)malloc(sizeof(char *) * (ft_strlen(environ[i]) + 1));
-			ft_strcpy(home, environ[i]);
-			home = ft_strnshift(home, 5);
+			temp = (char *)malloc(sizeof(char *) * (ft_strlen(environ[i]) + 1));
+			ft_strcpy(temp, environ[i]);
+			home = ft_strnshift(temp, 5);
+			free(temp);
 			break ;
 		}
 		i++;
@@ -80,6 +82,7 @@ void	ft_cd(char *line, t_env *env)
 	int			change;
 	char		*tmp;
 	char		*home;
+	char		*temp;
 	char		pwd[2048];
 
 	i = 0;
@@ -88,8 +91,10 @@ void	ft_cd(char *line, t_env *env)
 	getcwd(pwd, 2048);
 	tmp = (char *)malloc(sizeof(char *) * (ft_strlen(line) + 1));
 	ft_strcpy(tmp, line);
-	tmp = ft_strrw(tmp);
-	tmp = ft_strnshift(tmp, 3);
+	temp = ft_strtrim(tmp);
+	free(tmp);
+	tmp = ft_strnshift(temp, 3);
+	free(temp);
 	i = 0;
 	if (tmp[0] == '~')
 	{
